@@ -6,5 +6,8 @@ import react from '@astrojs/react';
 export default defineConfig({
   site: 'https://www.coherencemind.net',
   output: 'static',
+  build: {
+    inlineStylesheets: 'always'
+  },
   integrations: [react(), tailwind(), sitemap()]
 });
