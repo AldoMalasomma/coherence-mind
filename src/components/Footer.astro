@@ -34,6 +34,13 @@ const renderedYear = new Date().getFullYear();
     {/* Links */}
     <div class="flex flex-wrap items-center gap-4 text-xs text-white/60">
       <a class="hover:text-white" href="/privacy">Privacy</a>
+      <button
+        type="button"
+        class="bg-transparent p-0 font-[inherit] text-inherit hover:text-white"
+        data-open-cookie-banner
+      >
+        Cookie preferences
+      </button>
       <a class="hover:text-white" href="/imprint">Imprint</a>
       <a class="hover:text-white" href="/accessibility">Accessibility</a>
 
@@ -62,5 +69,18 @@ const renderedYear = new Date().getFullYear();
   <script is:inline>
     const yearNode = document.querySelector('[data-current-year]');
     if (yearNode) yearNode.textContent = new Date().getFullYear().toString();
+  </script>
+
+  <script is:inline>
+    (() => {
+      const buttons = document.querySelectorAll('[data-open-cookie-banner]');
+      if (!buttons.length) return;
+
+      buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+          window.dispatchEvent(new CustomEvent('cm:open-cookie-banner'));
+        });
+      });
+    })();
   </script>
 </footer>

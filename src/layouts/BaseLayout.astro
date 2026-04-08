@@ -7,6 +7,7 @@ import CookieBanner from '../components/CookieBanner.astro';
 import { getNavigation, getSiteSettings } from '../lib/sanityQueries';
 
 const { seo } = Astro.props;
+const analyticsId = 'G-1P47ZLRSZG';
 const [navigation, settings] = await Promise.all([
   getNavigation(),
   getSiteSettings()
@@ -100,7 +101,7 @@ const meta = {
       <slot />
     </main>
     <Footer siteTitle={settings?.title ?? 'Reflexive Coherence Lab'} />
-    <CookieBanner />
+    <CookieBanner analyticsId={analyticsId} policyHref="/privacy" />
     <script is:inline>
       (() => {
         if (typeof document === 'undefined') return;

@@ -7,6 +7,8 @@ const seo = {
   description: 'Data protection and GDPR baseline notice for the CoherenceMind project.'
 };
 
+const lastUpdated = '8 April 2026';
+
 const anchors = [
   { id: 'controller', label: 'Data controller' },
   { id: 'collection', label: 'Data collection' },
@@ -24,8 +26,16 @@ const anchors = [
   <PageTitle
     eyebrow="compliance"
     title="Privacy Policy"
-    intro="Baseline information on data protection and privacy practices."
+    intro="Baseline information on data protection and privacy practices, including consent-aware analytics."
   />
+
+  <section class="pb-4">
+    <div class="container">
+      <p class="text-sm text-slate-600 dark:text-white/60">
+        Last updated: {lastUpdated}
+      </p>
+    </div>
+  </section>
 
   <section class="pb-6 lg:hidden">
     <div class="container">
@@ -100,6 +110,11 @@ const anchors = [
             <p class="mt-2">
               The site can be browsed without providing any personal information.
             </p>
+            <p class="mt-2">
+              If you accept analytics cookies, Google Analytics 4 may process page views,
+              browser/device information, and simple navigation events for aggregate site measurement.
+              Analytics are loaded only after opt-in.
+            </p>
           </section>
 
           <section id="cookies" class="scroll-mt-28">
@@ -107,14 +122,16 @@ const anchors = [
               Cookies and analytics
             </h2>
             <p class="mt-2">
-              No non-essential cookies or analytics tools are currently in use.
-              The site does not employ behavioral tracking, cross-site identifiers,
-              or third-party analytics platforms.
+              Essential cookies and local storage are used for core site operation and for storing
+              your consent choice. If you accept analytics, Google Analytics 4 may set first-party
+              cookies such as <code class="mx-1 rounded bg-slate-100 px-1 py-0.5 text-[0.85em] text-slate-700 dark:bg-white/10 dark:text-white/80">_ga</code>
+              and <code class="mx-1 rounded bg-slate-100 px-1 py-0.5 text-[0.85em] text-slate-700 dark:bg-white/10 dark:text-white/80">_ga_&lt;container-id&gt;</code>
+              to help us understand traffic.
             </p>
             <p class="mt-2">
-              Should analytics or similar tools be introduced in the future,
-              a consent mechanism and updated documentation will be provided
-              prior to any data collection.
+              Analytics scripts are not loaded until you opt in. You can change your choice later
+              from the Cookie preferences control in the footer. We do not use advertising pixels,
+              remarketing, or cross-site behavioral tracking.
             </p>
           </section>
 

@@ -7,7 +7,7 @@ Astro + Sanity implementation for presenting the Reflexive Coherence Model (RCM)
 - **Tailwind CSS** for consistent, high-contrast theming and manageable spacing/typography tokens.
 - **Sanity v4 Studio** powering structured content via GROQ queried at build time (SSR optional later).
 - **Portable Text renderer** for rich text sections, isolated in `src/components/RichTextRenderer.tsx`.
-- **SEO & GDPR ready** with `Seo.astro`, sitemap/robots, privacy + imprint placeholders, and an inactive cookie banner ready for optional analytics.
+- **SEO & GDPR ready** with `Seo.astro`, sitemap/robots, privacy + imprint pages, and a consent-aware cookie banner for optional analytics.
 
 ## Project Structure
 ```
@@ -64,8 +64,8 @@ Document schemas live in `sanity/schemaTypes`. Key types:
 ## Accessibility, SEO, GDPR
 - Semantically structured pages with ordered headings, `<nav>`, `<main>`, `<footer>`, and visible focus states.
 - `Seo.astro` centralizes meta tags, canonical URLs, and OG/Twitter data; `@astrojs/sitemap` + `public/robots.txt` cover basic discoverability.
-- No non-essential cookies or trackers are enabled by default. `CookieBanner.astro` contains the hook for a future consent manager should analytics or embeds be introduced.
-- Privacy + imprint pages ship as placeholders ready for legal copy; update them before launch with controller details, lawful bases, and contact info.
+- No non-essential cookies or trackers are enabled before opt-in. `CookieBanner.astro` loads Google Analytics only after consent and the footer includes a cookie preferences control.
+- Privacy + imprint pages should stay aligned with the active data flow; update them whenever analytics, embeds, or contact details change.
 
 ## Deployment
 `npm run build` outputs a static `dist/` folder compatible with Netlify, Vercel, Cloudflare Pages, and similar static hosts. Ensure host-level environment variables match `.env` when fetching Sanity content during build.

@@ -1,18 +1,128 @@
 ---
-const enableBanner = false;
+interface Props {
+  analyticsId: string;
+  policyHref?: string;
+}
+
+const { analyticsId, policyHref = '/privacy' } = Astro.props;
 ---
-{enableBanner && (
-  <div class="fixed inset-x-0 bottom-0 z-10 border-t border-white/10 bg-ink/95 p-4 text-sm">
-    <div class="container flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-      <p>
-        We use optional analytics to understand how the Reflexive Coherence Model resonates. Enable
-        them?
+
+<aside
+  class="fixed inset-x-4 bottom-4 z-50 mx-auto hidden w-[calc(100%-2rem)] max-w-4xl rounded-3xl border border-slate-200 bg-white/95 p-4 shadow-2xl backdrop-blur dark:border-white/10 dark:bg-ink/95 md:bottom-6 md:w-[calc(100%-3rem)] md:p-5"
+  data-cookie-banner
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="cookie-banner-title"
+  aria-describedby="cookie-banner-copy"
+>
+  <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+    <div class="max-w-2xl">
+      <p id="cookie-banner-title" class="text-xs font-semibold uppercase tracking-[0.22em] text-sky-700 dark:text-sky-300">
+        Cookie preferences
       </p>
-      <div class="flex gap-3">
-        <button class="btn-secondary" type="button">Decline</button>
-        <button class="btn-primary" type="button">Accept</button>
-      </div>
+      <p id="cookie-banner-copy" class="mt-2 text-sm leading-relaxed text-slate-700 dark:text-white/80">
+        We use essential cookies for site operation. If you accept analytics, Google Analytics 4 may
+        set first-party cookies to help us understand traffic and improve the site.
+      </p>
+      <p class="mt-2 text-xs leading-relaxed text-slate-600 dark:text-white/60">
+        Your choice is stored locally in your browser. You can change it later from the footer or
+        review the
+        <a href={policyHref} class="underline decoration-slate-300 underline-offset-4 hover:text-slate-900 dark:decoration-white/25 dark:hover:text-white">
+          Privacy Policy
+        </a>.
+      </p>
     </div>
-    <!-- Integrate consent manager + analytics script loading here if optional services are added. -->
+
+    <div class="flex flex-col gap-3 sm:flex-row">
+      <button
+        type="button"
+        class="inline-flex items-center justify-center rounded-full bg-sky-700 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-sky-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-ink"
+        data-cookie-accept
+      >
+        Accept analytics
+      </button>
+      <button
+        type="button"
+        class="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-800 transition hover:border-slate-400 hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-white/15 dark:bg-white/5 dark:text-white/80 dark:hover:border-white/25 dark:hover:bg-white/10 dark:focus-visible:ring-offset-ink"
+        data-cookie-reject
+      >
+        Essential only
+      </button>
+    </div>
   </div>
-)}
+</aside>
+
+<script is:inline define:vars={{ analyticsId }}>
+  (() => {
+    const STORAGE_KEY = 'cm-cookie-consent';
+    const ACCEPTED = 'accepted';
+    const REJECTED = 'rejected';
+
+    const banner = document.querySelector('[data-cookie-banner]');
+    if (!banner) return;
+
+    const acceptButtons = document.querySelectorAll('[data-cookie-accept]');
+    const rejectButtons = document.querySelectorAll('[data-cookie-reject]');
+
+    const loadAnalytics = () => {
+      if (window.__cmAnalyticsLoaded) return;
+
+      window.dataLayer = window.dataLayer || [];
+      window.gtag =
+        window.gtag ||
+        function gtag() {
+          window.dataLayer.push(arguments);
+        };
+
+      const script = document.createElement('script');
+      script.async = true;
+      script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(analyticsId)}`;
+      document.head.appendChild(script);
+
+      window.gtag('js', new Date());
+      window.gtag('config', analyticsId);
+      window.__cmAnalyticsLoaded = true;
+    };
+
+    const hideBanner = () => {
+      banner.setAttribute('hidden', '');
+    };
+
+    const showBanner = () => {
+      banner.removeAttribute('hidden');
+    };
+
+    const storeConsent = (value) => {
+      try {
+        window.localStorage.setItem(STORAGE_KEY, value);
+      } catch (error) {}
+      if (value === ACCEPTED) {
+        loadAnalytics();
+      }
+      hideBanner();
+    };
+
+    let storedConsent = null;
+    try {
+      storedConsent = window.localStorage.getItem(STORAGE_KEY);
+    } catch (error) {}
+    if (storedConsent === ACCEPTED) {
+      loadAnalytics();
+      hideBanner();
+    } else if (storedConsent === REJECTED) {
+      hideBanner();
+    } else {
+      showBanner();
+    }
+
+    acceptButtons.forEach((button) => {
+      button.addEventListener('click', () => storeConsent(ACCEPTED));
+    });
+
+    rejectButtons.forEach((button) => {
+      button.addEventListener('click', () => storeConsent(REJECTED));
+    });
+
+    window.addEventListener('cm:open-cookie-banner', showBanner);
+  })();
+</script>
