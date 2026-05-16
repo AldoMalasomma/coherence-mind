@@ -1,6 +1,5 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import PageTitle from '../../components/PageTitle.astro';
 import BlogPostList from '../../components/BlogPostList.astro';
 import { getBlogPosts } from '../../lib/sanityQueries';
 
@@ -15,105 +14,163 @@ const seo = {
 const tagSet = new Set<string>();
 for (const p of posts) (p?.tags ?? []).forEach((t) => tagSet.add(String(t)));
 const allTags = Array.from(tagSet).sort((a, b) => a.localeCompare(b));
+
+const articleBadges = [
+  { label: 'Context', tone: 'border-sky-700/70 text-sky-800 dark:text-sky-300' },
+  { label: 'Clarifications', tone: 'border-violet-700/70 text-violet-800 dark:text-violet-300' },
+  { label: 'Research notes', tone: 'border-emerald-700/70 text-emerald-800 dark:text-emerald-300' }
+];
 ---
 
 <BaseLayout seo={seo}>
-  <PageTitle
-    eyebrow="articles"
-    title="Context & Clarifications"
-    intro="Occasional essays intended to clarify, contextualize, and delimit the Reflexive Coherence Model. These texts do not extend the model, but articulate its conceptual background and boundaries."
-  />
-
-  {/* Controls */}
-  <section class="pb-10">
-    <div class="container">
-      <div class="grid gap-4 lg:grid-cols-[1fr_auto] lg:items-end">
+  <div class="bg-slate-50 text-slate-900 transition-colors duration-300 dark:bg-slate-950 dark:text-slate-100">
+    <section class="border-b border-slate-200/80 px-4 py-16 md:py-24 dark:border-slate-900">
+      <div class="mx-auto grid max-w-6xl gap-10 md:grid-cols-2 md:items-center">
         <div>
-          <label for="blogSearch" class="mb-2 block text-xs font-semibold uppercase tracking-wide text-slate-700 dark:text-white/70">
-            Search
-          </label>
+          <p class="mb-4 text-xs font-semibold uppercase tracking-[0.25em] text-sky-700 dark:text-sky-300">
+            articles
+          </p>
 
-          <div class="flex items-center gap-2">
-            <input
-              id="blogSearch"
-              type="text"
-              placeholder="Search (e.g. reflexivity, RCI, substrate)…"
-              class="w-full rounded-2xl border border-slate-200 bg-white/60 px-4 py-3 text-sm text-slate-900 shadow-sm outline-none backdrop-blur placeholder:text-slate-400 focus:border-slate-300 dark:border-white/10 dark:bg-white/5 dark:text-white dark:placeholder:text-white/35 dark:focus:border-white/20"
-            />
-            <button
-              id="blogClear"
-              type="button"
-              class="hidden rounded-2xl border border-slate-200 bg-white/60 px-4 py-3 text-sm font-semibold text-slate-700 shadow-sm backdrop-blur hover:bg-white dark:border-white/10 dark:bg-white/5 dark:text-white/80 dark:hover:bg-white/10"
-            >
-              Clear
-            </button>
-          </div>
+          <h1 class="text-3xl font-semibold leading-tight text-slate-900 dark:text-white md:text-5xl">
+            Context & Clarifications
+            <span class="mt-3 block text-xl text-slate-500 dark:text-slate-300 md:text-2xl">
+              essays around reflexive coherence.
+            </span>
+          </h1>
 
-          <p class="mt-2 text-sm text-slate-600 dark:text-white/70">
-            <span id="blogCount">{posts.length}</span> articles
-            <span class="text-slate-400 dark:text-white/35"> · </span>
-            lab notes remain on the homepage.
+          <p class="mt-5 max-w-2xl text-sm text-slate-600 dark:text-slate-300 md:text-base">
+            Occasional essays intended to clarify, contextualize, and delimit the Reflexive Coherence Model. These texts do not extend the model, but articulate its conceptual background and boundaries.
           </p>
         </div>
 
-        {/* Tags */}
-        <div>
-          <p class="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-700 dark:text-white/70">
-            Filter by tag
-          </p>
+        <div class="relative">
+          <div class="pointer-events-none absolute inset-0 hidden scale-[1.2] rounded-[48px] bg-gradient-to-tr from-sky-500/20 via-purple-500/10 to-transparent blur-3xl dark:block"></div>
 
-          <div class="flex flex-wrap gap-2">
-            <button
-              type="button"
-              class="tag-chip rounded-full border border-slate-200 bg-white/50 px-3 py-1 text-xs font-semibold text-slate-700 shadow-sm hover:bg-white dark:border-white/10 dark:bg-white/5 dark:text-white/80 dark:hover:bg-white/10"
-              data-tag="__all__"
-            >
-              All
-            </button>
+          <div class="relative rounded-3xl border border-slate-200 bg-white/80 p-6 shadow-lg backdrop-blur-sm dark:border-slate-800 dark:bg-slate-900/60 md:p-8">
+            <div class="mb-4 flex items-center justify-between text-xs tracking-[0.25em] text-slate-500 dark:text-slate-400">
+              <span>Articles snapshot</span>
+              <span class="h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_12px_rgba(16,185,129,0.8)] dark:bg-emerald-400"></span>
+            </div>
 
-            {allTags.map((t) => (
-              <button
-                type="button"
-                class="tag-chip rounded-full border border-slate-200 bg-white/50 px-3 py-1 text-xs font-semibold text-slate-700 shadow-sm hover:bg-white dark:border-white/10 dark:bg-white/5 dark:text-white/80 dark:hover:bg-white/10"
-                data-tag={t}
-              >
-                {t}
-              </button>
-            ))}
+            <div class="space-y-4 text-sm text-slate-700 dark:text-slate-200">
+              <div class="flex flex-wrap gap-2">
+                {articleBadges.map((badge) => (
+                  <span class={`inline-flex items-center rounded-full border bg-white/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] shadow-sm dark:bg-white/5 ${badge.tone}`}>
+                    {badge.label}
+                  </span>
+                ))}
+              </div>
+
+              <div class="rounded-2xl border border-slate-200 bg-white/90 p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900/60">
+                <p class="text-xs text-slate-600 dark:text-slate-300">
+                  Essays and notes that clarify boundaries, background assumptions, and interpretive context for the RCM–TEH–PRS-AIS framework.
+                </p>
+              </div>
+
+              <div class="grid gap-3 text-xs text-slate-600 dark:text-slate-400 sm:grid-cols-3">
+                <div class="rounded-2xl border border-slate-200/80 bg-white/70 p-3 dark:border-slate-800 dark:bg-slate-950/40">
+                  <span class="block font-semibold text-slate-900 dark:text-white">{posts.length}</span>
+                  articles
+                </div>
+                <div class="rounded-2xl border border-slate-200/80 bg-white/70 p-3 dark:border-slate-800 dark:bg-slate-950/40">
+                  <span class="block font-semibold text-slate-900 dark:text-white">{allTags.length}</span>
+                  tags
+                </div>
+                <div class="rounded-2xl border border-slate-200/80 bg-white/70 p-3 dark:border-slate-800 dark:bg-slate-950/40">
+                  <span class="block font-semibold text-slate-900 dark:text-white">Living</span>
+                  archive
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  {/* List */}
-  <section class="pb-20">
-    <div class="container">
-      <BlogPostList posts={posts} />
+    <section class="px-4 pb-16 pt-10">
+      <div class="mx-auto max-w-6xl">
+        <div class="mb-10 rounded-2xl border border-slate-200 bg-white/80 p-5 shadow-sm backdrop-blur-sm dark:border-slate-800 dark:bg-slate-900/50 md:p-6">
+          <div class="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(260px,auto)] lg:items-start">
+            <div>
+              <label for="blogSearch" class="mb-2 block text-xs font-semibold uppercase tracking-[0.2em] text-slate-700 dark:text-slate-300">
+                Search
+              </label>
 
-      {/* Home-only lab notes reminder */}
-      <div class="mt-12 rounded-3xl border border-slate-200 bg-white/50 p-6 shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/5">
-        <h2 class="text-base font-semibold text-slate-900 dark:text-white">
-          Lab notes
-        </h2>
+              <div class="flex items-center gap-2">
+                <input
+                  id="blogSearch"
+                  type="text"
+                  placeholder="Search (e.g. reflexivity, RCI, substrate)…"
+                  class="w-full rounded-2xl border border-slate-200 bg-white/80 px-4 py-3 text-sm text-slate-900 shadow-sm outline-none transition placeholder:text-slate-400 focus:border-sky-400 focus:ring-2 focus:ring-sky-300/40 dark:border-slate-800 dark:bg-slate-950/60 dark:text-white dark:placeholder:text-slate-500 dark:focus:border-sky-400/70 dark:focus:ring-sky-400/20"
+                />
+                <button
+                  id="blogClear"
+                  type="button"
+                  class="hidden rounded-2xl border border-slate-200 bg-white/80 px-4 py-3 text-sm font-semibold text-slate-700 shadow-sm transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-sky-300/50 dark:border-slate-800 dark:bg-slate-900/70 dark:text-slate-200 dark:hover:bg-slate-800 dark:focus:ring-sky-400/30"
+                >
+                  Clear
+                </button>
+              </div>
 
-        <p class="mt-1 text-sm text-slate-600 dark:text-white/70">
-          Field records, sketches, and thought fragments from the reflexive coherence lab.
-        </p>
+              <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">
+                <span id="blogCount">{posts.length}</span> articles
+                <span class="text-slate-400 dark:text-slate-600"> · </span>
+                lab notes remain on the homepage.
+              </p>
+            </div>
 
-        <div class="mt-4 flex flex-wrap gap-4 text-xs font-semibold">
-          <a href="/notes" class="link-card">
-            Open Notes →
-          </a>
+            <div>
+              <p class="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-slate-700 dark:text-slate-300">
+                Filter by tag
+              </p>
 
-          <a href="/model" class="link-card">
-            Back to Model →
-          </a>
+              <div class="flex flex-wrap gap-2">
+                <button
+                  type="button"
+                  class="tag-chip rounded-full border border-slate-200 bg-white/80 px-3 py-1 text-xs font-semibold text-slate-700 shadow-sm transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-sky-300/50 dark:border-slate-800 dark:bg-slate-950/40 dark:text-slate-200 dark:hover:bg-slate-800 dark:focus:ring-sky-400/30"
+                  data-tag="__all__"
+                >
+                  All
+                </button>
+
+                {allTags.map((t) => (
+                  <button
+                    type="button"
+                    class="tag-chip rounded-full border border-slate-200 bg-white/80 px-3 py-1 text-xs font-semibold text-slate-700 shadow-sm transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-sky-300/50 dark:border-slate-800 dark:bg-slate-950/40 dark:text-slate-200 dark:hover:bg-slate-800 dark:focus:ring-sky-400/30"
+                    data-tag={t}
+                  >
+                    {t}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <BlogPostList posts={posts} />
+
+        <div class="mt-12 rounded-3xl border border-slate-200 bg-white/80 p-6 shadow-sm backdrop-blur-sm dark:border-slate-800 dark:bg-slate-900/50">
+          <h2 class="text-base font-semibold text-slate-900 dark:text-white">
+            Lab notes
+          </h2>
+
+          <p class="mt-1 max-w-2xl text-sm text-slate-600 dark:text-slate-300">
+            Field records, sketches, and thought fragments from the reflexive coherence lab.
+          </p>
+
+          <div class="mt-4 flex flex-wrap gap-3 text-xs font-semibold">
+            <a href="/notes" class="link-card">
+              Open Notes →
+            </a>
+
+            <a href="/model" class="link-card">
+              Back to Model →
+            </a>
+          </div>
         </div>
       </div>
-
-    </div>
-  </section>
+    </section>
+  </div>
 
   {/* Client-side search + tag filter */}
   <script is:inline>

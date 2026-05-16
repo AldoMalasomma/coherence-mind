@@ -1,180 +1,249 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import PageTitle from '../components/PageTitle.astro';
 
 const seo = {
-  title: 'Papers — CoherenceMind',
-  description: 'Citable publications and preprints connected to the Reflexive Coherence Model.'
+  title: 'Papers & Resources — CoherenceMind',
+  description: 'Citable publications and preprints for the RCM, TEH, and PRS-AIS project set.'
 };
 
-const primaryPaper = {
-  title: 'The Reflexive Coherence Model: A Physico-Informational Framework for Consciousness',
-  doi: '10.5281/zenodo.17342603',
-  doiUrl: 'https://doi.org/10.5281/zenodo.17342603',
-  year: '2025',
-  venue: 'Zenodo (preprint)',
-  licenseLabel: 'CC BY-NC-ND 4.0',
-  licenseNote: 'Attribution required · NonCommercial · NoDerivatives',
-  // Se non hai ancora il PDF sul sito, metti null e il bottone sparisce.
-  pdfUrl: '/papers/rcm-v1.1.pdf'
-};
+const papers = [
+  {
+    shortTitle: 'RCM',
+    role: 'Foundational architecture',
+    title: 'The Reflexive Coherence Model: A Physico-Informational Framework for Consciousness',
+    author: 'Aldo G. Malasomma (AKA Toshak)',
+    version: '1.2',
+    date: 'May 9, 2026',
+    year: '2026',
+    doi: '10.5281/zenodo.20106158',
+    doiUrl: 'https://doi.org/10.5281/zenodo.20106158',
+    venue: 'Zenodo',
+    summary:
+      'Foundational architecture of reflexive coherence: informational integration, operational self-modeling, reflexive causal coupling, and finite-window temporal stability.',
+    pdfUrl: null
+  },
+  {
+    shortTitle: 'TEH',
+    role: 'Dynamical layer',
+    title: 'The Expansion Hypothesis: Dynamical Regimes of Reflexive Coherence',
+    author: 'Aldo G. Malasomma (AKA Toshak)',
+    version: '1.2',
+    date: 'May 10, 2026',
+    year: '2026',
+    doi: '10.5281/zenodo.20157592',
+    doiUrl: 'https://doi.org/10.5281/zenodo.20157592',
+    venue: 'Zenodo',
+    summary:
+      'Dynamical layer describing stability, expansion, contraction, attractors, temporal viability, and how reflexive coherence behaves over time.',
+    pdfUrl: null
+  },
+  {
+    shortTitle: 'PRS-AIS',
+    role: 'Applied / interpretive layer',
+    title: 'Proto-Reflexive States in Artificial Systems',
+    author: 'Aldo G. Malasomma',
+    version: null,
+    versionNote: 'Version label to be verified against the Zenodo record.',
+    date: 'May 15, 2026',
+    year: '2026',
+    doi: '10.5281/zenodo.20201726',
+    doiUrl: 'https://doi.org/10.5281/zenodo.20201726',
+    venue: 'Zenodo',
+    summary:
+      'Applied and interpretive layer for artificial systems, proto-reflexive states, and cautious analysis without claiming machine consciousness.',
+    pdfUrl: null
+  }
+];
 
-const expansionPaper = {
-  title: 'The Expansion Hypothesis: Dynamical Regimes of Reflexive Coherence',
-  doi: '10.5281/zenodo.18045464',
-  doiUrl: 'https://doi.org/10.5281/zenodo.18045464',
-  year: '2025',
-  venue: 'Zenodo (preprint)',
-  licenseLabel: 'CC BY-NC-ND 4.0',
-  licenseNote: 'Attribution required · NonCommercial · NoDerivatives',
-  pdfUrl: '/papers/teh-v1.1.pdf'
-};
+const primaryPaper = papers[0];
+const paperBadges = [
+  { label: `${papers.length} papers`, tone: 'border-sky-700/70 text-sky-800 dark:text-sky-300' },
+  { label: 'Zenodo', tone: 'border-violet-700/70 text-violet-800 dark:text-violet-300' },
+  { label: 'RCM–TEH–PRS-AIS', tone: 'border-emerald-700/70 text-emerald-800 dark:text-emerald-300' }
+];
 ---
 
 <BaseLayout seo={seo}>
-  <PageTitle
-    eyebrow="publications"
-    title="Papers & Preprints"
-    intro="Citable publications, versioned resources, and primary references for the Reflexive Coherence Model."
-  />
+  <div class="bg-slate-50 text-slate-900 transition-colors duration-300 dark:bg-slate-950 dark:text-slate-100">
+    <section class="border-b border-slate-200/80 px-4 py-16 md:py-24 dark:border-slate-900">
+      <div class="mx-auto grid max-w-6xl gap-10 md:grid-cols-2 md:items-center">
+        <div>
+          <p class="mb-4 text-xs font-semibold uppercase tracking-[0.25em] text-sky-700 dark:text-sky-300">
+            publications
+          </p>
 
-  <section class="pb-20">
-    <div class="container">
-      <div class="grid gap-10 lg:grid-cols-[1.2fr_0.8fr]">
-        {/* Main column */}
-        <div class="space-y-6">
-          {/* Primary paper card */}
-          <div class="rounded-3xl border border-slate-200 bg-white/60 p-6 shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/5">
-            <div class="flex flex-wrap items-start justify-between gap-4">
-              <div class="max-w-2xl">
-                <p class="text-xs font-semibold uppercase tracking-wide text-slate-600 dark:text-white/60">
-                  Primary reference · {primaryPaper.venue}
-                </p>
-                <h2 class="mt-2 text-xl font-semibold text-slate-900 dark:text-white">
-                  {primaryPaper.title}
-                </h2>
-                <p class="mt-2 text-sm text-slate-600 dark:text-white/70">
-                  DOI:{' '}
-                  <a
-                    href={primaryPaper.doiUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="underline decoration-slate-400 underline-offset-2 hover:decoration-slate-700 dark:decoration-white/30 dark:hover:decoration-white/60"
-                  >
-                    {primaryPaper.doi}
-                  </a>
-                </p>
-              </div>
+          <h1 class="text-3xl font-semibold leading-tight text-slate-900 dark:text-white md:text-5xl">
+            Papers & Resources
+            <span class="mt-3 block text-xl text-slate-500 dark:text-slate-300 md:text-2xl">
+              formal records of the framework.
+            </span>
+          </h1>
 
-              <div class="flex flex-col items-start gap-2">
-                <span class="rounded-full border border-slate-200 bg-white/70 px-3 py-1 text-xs font-semibold text-slate-700 dark:border-white/10 dark:bg-white/10 dark:text-white/80">
-                  {primaryPaper.licenseLabel}
-                </span>
-                <p class="text-xs text-slate-500 dark:text-white/50">
-                  {primaryPaper.licenseNote}
-                </p>
-              </div>
+          <p class="mt-5 max-w-2xl text-sm text-slate-600 dark:text-slate-300 md:text-base">
+            The project now develops as a three-part framework: RCM, TEH, and Proto-Reflexive States in Artificial Systems.
+          </p>
+        </div>
+
+        <div class="relative">
+          <div class="pointer-events-none absolute inset-0 hidden scale-[1.2] rounded-[48px] bg-gradient-to-tr from-sky-500/20 via-purple-500/10 to-transparent blur-3xl dark:block"></div>
+
+          <div class="relative rounded-3xl border border-slate-200 bg-white/80 p-6 shadow-lg backdrop-blur-sm dark:border-slate-800 dark:bg-slate-900/60 md:p-8">
+            <div class="mb-4 flex items-center justify-between text-xs tracking-[0.25em] text-slate-500 dark:text-slate-400">
+              <span>Papers snapshot</span>
+              <span class="h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_12px_rgba(16,185,129,0.8)] dark:bg-emerald-400"></span>
             </div>
 
-            <div class="mt-5 flex flex-wrap gap-4 text-sm">
-              <a
-                href={primaryPaper.doiUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="link-accent font-semibold"
-              >
-                Read on Zenodo →
-              </a>
+            <div class="space-y-4 text-sm text-slate-700 dark:text-slate-200">
+              <div class="flex flex-wrap gap-2">
+                {paperBadges.map((badge) => (
+                  <span class={`inline-flex items-center rounded-full border bg-white/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] shadow-sm dark:bg-white/5 ${badge.tone}`}>
+                    {badge.label}
+                  </span>
+                ))}
+              </div>
 
-              {primaryPaper.pdfUrl ? (
-                <a href={primaryPaper.pdfUrl} class="link-accent font-semibold">
-                  Open PDF →
-                </a>
-              ) : null}
+              <div class="rounded-2xl border border-slate-200 bg-white/90 p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900/60">
+                <p class="text-xs text-slate-600 dark:text-slate-300">
+                  The current formal reference set for the framework: foundational architecture, temporal dynamics, and artificial-system interpretation.
+                </p>
+              </div>
+
+              <div class="grid gap-3 text-xs text-slate-600 dark:text-slate-400 sm:grid-cols-3">
+                <div class="rounded-2xl border border-slate-200/80 bg-white/70 p-3 dark:border-slate-800 dark:bg-slate-950/40">
+                  <span class="block font-semibold text-slate-900 dark:text-white">2026</span>
+                  current set
+                </div>
+                <div class="rounded-2xl border border-slate-200/80 bg-white/70 p-3 dark:border-slate-800 dark:bg-slate-950/40">
+                  <span class="block font-semibold text-slate-900 dark:text-white">3 layers</span>
+                  framework map
+                </div>
+                <div class="rounded-2xl border border-slate-200/80 bg-white/70 p-3 dark:border-slate-800 dark:bg-slate-950/40">
+                  <span class="block font-semibold text-slate-900 dark:text-white">DOI</span>
+                  records
+                </div>
+              </div>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
 
-          {/* Expansion hypothesis card */}
-          <div class="rounded-3xl border border-slate-200 bg-white/60 p-6 shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/5">
-            <div class="flex flex-wrap items-start justify-between gap-4">
-              <div class="max-w-2xl">
-                <p class="text-xs font-semibold uppercase tracking-wide text-slate-600 dark:text-white/60">
-                  Extension · {expansionPaper.venue}
-                </p>
-                <h2 class="mt-2 text-xl font-semibold text-slate-900 dark:text-white">
-                  {expansionPaper.title}
-                </h2>
-                <p class="mt-2 text-sm text-slate-600 dark:text-white/70">
-                  DOI:{' '}
+    <section class="px-4 pb-16 pt-10">
+      <div class="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[1.2fr_0.8fr]">
+        {/* Main column */}
+        <div class="space-y-6">
+          <div class="rounded-3xl border border-slate-200 bg-white/80 p-6 shadow-sm backdrop-blur-sm dark:border-slate-800 dark:bg-slate-900/50">
+            <h2 class="text-base font-semibold text-slate-900 dark:text-white">Current project set</h2>
+            <p class="mt-2 max-w-3xl text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+              These three records form the current 2026 reference set. They should be read as a cautious research program:
+              RCM defines the architecture, TEH describes the dynamical regimes, and PRS-AIS applies the vocabulary to
+              artificial systems without treating the papers as proof of machine consciousness.
+            </p>
+          </div>
+
+          <div class="grid gap-5">
+            {papers.map((paper) => (
+              <article class="rounded-3xl border border-slate-200 bg-white/80 p-6 shadow-sm backdrop-blur-sm transition hover:-translate-y-0.5 hover:bg-white dark:border-slate-800 dark:bg-slate-900/40 dark:hover:bg-slate-900/70">
+                <div class="flex flex-wrap items-start justify-between gap-4">
+                  <div class="max-w-2xl">
+                    <p class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">
+                      {paper.shortTitle} · {paper.role} · {paper.venue}
+                    </p>
+                    <h2 class="mt-2 text-xl font-semibold text-slate-900 dark:text-white">
+                      {paper.title}
+                    </h2>
+                    <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">
+                      {paper.author} · {paper.date}
+                      {paper.version ? ` · Version ${paper.version}` : ''}
+                    </p>
+                    {paper.versionNote ? (
+                      <p class="mt-2 text-xs text-slate-500 dark:text-slate-400">
+                        {paper.versionNote}
+                      </p>
+                    ) : null}
+                    <p class="mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+                      {paper.summary}
+                    </p>
+                    <p class="mt-3 break-words text-sm text-slate-600 dark:text-slate-300">
+                      DOI:{' '}
+                      <a
+                        href={paper.doiUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="font-semibold text-sky-700 underline decoration-sky-300 underline-offset-4 transition hover:decoration-sky-500 focus:outline-none focus:ring-2 focus:ring-sky-300/50 dark:text-sky-300 dark:decoration-sky-500/40 dark:focus:ring-sky-400/30"
+                      >
+                        {paper.doi}
+                      </a>
+                    </p>
+                  </div>
+
+                  <div class="flex flex-col items-start gap-2">
+                    {paper.version ? (
+                      <span class="rounded-full border border-slate-200 bg-white/80 px-3 py-1 text-xs font-semibold text-slate-700 shadow-sm dark:border-slate-800 dark:bg-slate-950/40 dark:text-slate-300">
+                        v{paper.version}
+                      </span>
+                    ) : null}
+                    <span class="rounded-full border border-slate-200 bg-white/80 px-3 py-1 text-xs font-semibold text-slate-700 shadow-sm dark:border-slate-800 dark:bg-slate-950/40 dark:text-slate-300">
+                      {paper.year}
+                    </span>
+                  </div>
+                </div>
+
+                <div class="mt-5 flex flex-wrap gap-4 text-sm">
                   <a
-                    href={expansionPaper.doiUrl}
+                    href={paper.doiUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="underline decoration-slate-400 underline-offset-2 hover:decoration-slate-700 dark:decoration-white/30 dark:hover:decoration-white/60"
+                    class="link-accent font-semibold"
                   >
-                    {expansionPaper.doi}
+                    Read on Zenodo →
                   </a>
-                </p>
-              </div>
 
-              <div class="flex flex-col items-start gap-2">
-                <span class="rounded-full border border-slate-200 bg-white/70 px-3 py-1 text-xs font-semibold text-slate-700 dark:border-white/10 dark:bg-white/10 dark:text-white/80">
-                  {expansionPaper.licenseLabel}
-                </span>
-                <p class="text-xs text-slate-500 dark:text-white/50">
-                  {expansionPaper.licenseNote}
-                </p>
-              </div>
-            </div>
-
-            <div class="mt-5 flex flex-wrap gap-4 text-sm">
-              <a
-                href={expansionPaper.doiUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="link-accent font-semibold"
-              >
-                Read on Zenodo →
-              </a>
-
-              {expansionPaper.pdfUrl ? (
-                <a href={expansionPaper.pdfUrl} class="link-accent font-semibold">
-                  Open PDF →
-                </a>
-              ) : null}
-            </div>
+                  {paper.pdfUrl ? (
+                    <a href={paper.pdfUrl} class="link-accent font-semibold">
+                      Open PDF →
+                    </a>
+                  ) : null}
+                </div>
+              </article>
+            ))}
           </div>
 
           {/* How to cite */}
-          <div class="rounded-3xl border border-slate-200 bg-white/50 p-6 shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/5">
+          <div class="rounded-3xl border border-slate-200 bg-white/80 p-6 shadow-sm backdrop-blur-sm dark:border-slate-800 dark:bg-slate-900/50">
             <h3 class="text-base font-semibold text-slate-900 dark:text-white">How to cite</h3>
-            <p class="mt-2 text-sm text-slate-600 dark:text-white/70">
+            <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">
               Use the Zenodo record for the authoritative citation. A minimal citation format:
             </p>
 
-            <div class="mt-4 rounded-2xl border border-slate-200 bg-white/70 p-4 text-sm text-slate-700 dark:border-white/10 dark:bg-white/10 dark:text-white/80">
+            <div class="mt-4 rounded-2xl border border-slate-200 bg-white/90 p-4 text-sm text-slate-700 shadow-sm dark:border-slate-800 dark:bg-slate-900/60 dark:text-slate-200">
               Malasomma, A. G. ({primaryPaper.year}). <em>{primaryPaper.title}</em>. Zenodo. DOI:{' '}
               {primaryPaper.doi}
             </div>
 
-            <div class="mt-3 rounded-2xl border border-slate-200 bg-white/70 p-4 text-sm text-slate-700 dark:border-white/10 dark:bg-white/10 dark:text-white/80">
-              Malasomma, A. G. ({expansionPaper.year}). <em>{expansionPaper.title}</em>. Zenodo. DOI:{' '}
-              {expansionPaper.doi}
+            <div class="mt-3 rounded-2xl border border-slate-200 bg-white/90 p-4 text-sm text-slate-700 shadow-sm dark:border-slate-800 dark:bg-slate-900/60 dark:text-slate-200">
+              Malasomma, A. G. ({papers[1].year}). <em>{papers[1].title}</em>. Zenodo. DOI:{' '}
+              {papers[1].doi}
+            </div>
+
+            <div class="mt-3 rounded-2xl border border-slate-200 bg-white/90 p-4 text-sm text-slate-700 shadow-sm dark:border-slate-800 dark:bg-slate-900/60 dark:text-slate-200">
+              Malasomma, A. G. ({papers[2].year}). <em>{papers[2].title}</em>. Zenodo. DOI:{' '}
+              {papers[2].doi}
             </div>
           </div>
 
           {/* Versioning / status */}
-          <div class="rounded-3xl border border-slate-200 bg-white/50 p-6 shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/5">
+          <div class="rounded-3xl border border-slate-200 bg-white/80 p-6 shadow-sm backdrop-blur-sm dark:border-slate-800 dark:bg-slate-900/50">
             <h3 class="text-base font-semibold text-slate-900 dark:text-white">Versioning & status</h3>
-            <ul class="mt-3 list-disc space-y-2 pl-5 text-sm text-slate-600 dark:text-white/70">
+            <ul class="mt-3 list-disc space-y-2 pl-5 text-sm text-slate-600 dark:text-slate-300">
               <li>
-                The Zenodo record is the stable reference point for citation and archival access.
+                Zenodo records are the stable reference points for citation and archival access.
               </li>
               <li>
-                Website pages (Model, Glossary, Notes) may evolve faster than the formal paper and should be treated as living material.
+                Website pages — including Model, TEH, PRS-AIS, Glossary, Timeline, Articles, and related notes — may evolve faster than the formal papers and should be treated as living research material.
               </li>
               <li>
-                When a new paper version is released, the Zenodo entry will reflect the updated record and PDF.
+                PRS-AIS is currently shown without a visible version number until the manuscript label and the Zenodo record are fully reconciled.
               </li>
             </ul>
           </div>
@@ -182,43 +251,61 @@ const expansionPaper = {
 
         {/* Side column */}
         <aside class="space-y-4">
-          <div class="rounded-3xl border border-slate-200 bg-white/50 p-6 shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/5">
+          <div class="rounded-3xl border border-slate-200 bg-white/80 p-6 shadow-sm backdrop-blur-sm dark:border-slate-800 dark:bg-slate-900/50">
             <h3 class="text-base font-semibold text-slate-900 dark:text-white">Quick links</h3>
-            <p class="mt-2 text-sm text-slate-600 dark:text-white/70">
+            <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">
               Use these pages to navigate the model and its vocabulary.
             </p>
 
             <div class="mt-4 flex flex-col gap-2">
               <a
                 href="/model"
-                class="inline-flex items-center justify-between rounded-2xl border border-slate-200 bg-white/70 px-4 py-3 text-sm font-semibold text-slate-700 hover:bg-white dark:border-white/10 dark:bg-white/10 dark:text-white/80 dark:hover:bg-white/15"
+                class="inline-flex items-center justify-between rounded-2xl border border-slate-200 bg-white/80 px-4 py-3 text-sm font-semibold text-slate-700 shadow-sm transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-sky-300/50 dark:border-slate-800 dark:bg-slate-950/40 dark:text-slate-200 dark:hover:bg-slate-800 dark:focus:ring-sky-400/30"
               >
-                Model <span class="text-slate-400 dark:text-white/40">→</span>
+                RCM / Model <span class="text-slate-400 dark:text-white/40">→</span>
+              </a>
+              <a
+                href="/model/expansion-hypothesis"
+                class="inline-flex items-center justify-between rounded-2xl border border-slate-200 bg-white/80 px-4 py-3 text-sm font-semibold text-slate-700 shadow-sm transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-sky-300/50 dark:border-slate-800 dark:bg-slate-950/40 dark:text-slate-200 dark:hover:bg-slate-800 dark:focus:ring-sky-400/30"
+              >
+                TEH <span class="text-slate-400 dark:text-white/40">→</span>
+              </a>
+              <a
+                href="/model/proto-reflexive-states"
+                class="inline-flex items-center justify-between rounded-2xl border border-slate-200 bg-white/80 px-4 py-3 text-sm font-semibold text-slate-700 shadow-sm transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-sky-300/50 dark:border-slate-800 dark:bg-slate-950/40 dark:text-slate-200 dark:hover:bg-slate-800 dark:focus:ring-sky-400/30"
+              >
+                PRS-AIS <span class="text-slate-400 dark:text-white/40">→</span>
               </a>
               <a
                 href="/glossary"
-                class="inline-flex items-center justify-between rounded-2xl border border-slate-200 bg-white/70 px-4 py-3 text-sm font-semibold text-slate-700 hover:bg-white dark:border-white/10 dark:bg-white/10 dark:text-white/80 dark:hover:bg-white/15"
+                class="inline-flex items-center justify-between rounded-2xl border border-slate-200 bg-white/80 px-4 py-3 text-sm font-semibold text-slate-700 shadow-sm transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-sky-300/50 dark:border-slate-800 dark:bg-slate-950/40 dark:text-slate-200 dark:hover:bg-slate-800 dark:focus:ring-sky-400/30"
               >
                 Glossary <span class="text-slate-400 dark:text-white/40">→</span>
               </a>
               <a
                 href="/timeline"
-                class="inline-flex items-center justify-between rounded-2xl border border-slate-200 bg-white/70 px-4 py-3 text-sm font-semibold text-slate-700 hover:bg-white dark:border-white/10 dark:bg-white/10 dark:text-white/80 dark:hover:bg-white/15"
+                class="inline-flex items-center justify-between rounded-2xl border border-slate-200 bg-white/80 px-4 py-3 text-sm font-semibold text-slate-700 shadow-sm transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-sky-300/50 dark:border-slate-800 dark:bg-slate-950/40 dark:text-slate-200 dark:hover:bg-slate-800 dark:focus:ring-sky-400/30"
               >
                 Timeline <span class="text-slate-400 dark:text-white/40">→</span>
+              </a>
+              <a
+                href="/blog"
+                class="inline-flex items-center justify-between rounded-2xl border border-slate-200 bg-white/80 px-4 py-3 text-sm font-semibold text-slate-700 shadow-sm transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-sky-300/50 dark:border-slate-800 dark:bg-slate-950/40 dark:text-slate-200 dark:hover:bg-slate-800 dark:focus:ring-sky-400/30"
+              >
+                Articles <span class="text-slate-400 dark:text-white/40">→</span>
               </a>
             </div>
           </div>
 
-          <div class="rounded-3xl border border-slate-200 bg-white/50 p-6 text-sm text-slate-600 shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/5 dark:text-white/70">
+          <div class="rounded-3xl border border-slate-200 bg-white/80 p-6 text-sm text-slate-600 shadow-sm backdrop-blur-sm dark:border-slate-800 dark:bg-slate-900/50 dark:text-slate-300">
             <p class="font-semibold text-slate-900 dark:text-white">Licensing note</p>
             <p class="mt-2">
-              The formal paper is published under <strong>{primaryPaper.licenseLabel}</strong>.
-              Website content may use a different license (see Imprint).
+              Use the license terms shown on each Zenodo record as authoritative. Website content may use a different license
+              (see Imprint).
             </p>
           </div>
         </aside>
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
 </BaseLayout>

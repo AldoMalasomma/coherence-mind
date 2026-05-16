@@ -1,26 +1,31 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import FrameworkNav from '../../components/FrameworkNav.astro';
 
 const seo = {
-  title: 'Expansion Hypothesis · Reflexive Coherence Model',
-  description: 'Dynamical regimes of reflexive coherence within the Reflexive Coherence Model.'
+  title: 'Expansion Hypothesis · TEH v1.2',
+  description: 'The dynamical layer of the RCM–TEH–PRS-AIS framework, modeling the temporal viability of reflexive coherence.'
 };
 
-const doiUrl = 'https://doi.org/10.5281/zenodo.18045464';
+const doiUrl = 'https://doi.org/10.5281/zenodo.20157592';
 
 const anchors = [
   { id: 'overview', label: 'Overview' },
-  { id: 'dynamics', label: 'From coherence to dynamics' },
+  { id: 'dynamics', label: 'From RCM to dynamics' },
+  { id: 'construct', label: 'RCI and Ξ(t)' },
+  { id: 'schema', label: 'Gain, dissonance, dissipation' },
   { id: 'regimes', label: 'Dynamic regimes' },
   { id: 'attractors', label: 'Reflexive attractors' },
   { id: 'meta', label: 'Meta-reflexivity' },
+  { id: 'stability', label: 'Temporal stability' },
+  { id: 'matters', label: 'Why it matters' },
   { id: 'references', label: 'References' }
 ];
 
 const keyBadges = [
-  { label: 'RCM', tone: 'border-sky-700/70 text-sky-800 dark:text-sky-300' },
+  { label: 'TEH v1.2', tone: 'border-sky-700/70 text-sky-800 dark:text-sky-300' },
   { label: 'Dynamics', tone: 'border-violet-700/70 text-violet-800 dark:text-violet-300' },
-  { label: 'Expansion', tone: 'border-emerald-700/70 text-emerald-800 dark:text-emerald-300' }
+  { label: 'Temporal viability', tone: 'border-emerald-700/70 text-emerald-800 dark:text-emerald-300' }
 ];
 ---
 
@@ -34,18 +39,18 @@ const keyBadges = [
       <div class="mx-auto grid max-w-6xl gap-10 md:grid-cols-2 md:items-center">
         <div>
           <p class="mb-4 text-xs font-semibold uppercase tracking-[0.25em] text-sky-700 dark:text-sky-300">
-            Reflexive Coherence Model
+            RCM–TEH–PRS-AIS framework
           </p>
 
           <h1 class="text-3xl font-semibold leading-tight text-slate-900 dark:text-white md:text-5xl">
             Expansion Hypothesis
             <span class="mt-3 block text-xl text-slate-500 dark:text-slate-300 md:text-2xl">
-              dynamical regimes of reflexive coherence.
+              temporal dynamics of reflexive coherence.
             </span>
           </h1>
 
           <p class="mt-5 max-w-2xl text-sm text-slate-600 dark:text-slate-300 md:text-base">
-            The Expansion Hypothesis extends the Reflexive Coherence Model by asking what happens once reflexive coherence is already in place—treating expansion as a dynamical property.
+            The Expansion Hypothesis extends RCM by modeling how reflexive coherence stabilizes, reorganizes, degrades, contracts, fragments, or transitions across time.
           </p>
 
           <div class="mt-8 flex flex-wrap gap-4">
@@ -87,7 +92,7 @@ const keyBadges = [
 
               <div class="rounded-2xl border border-slate-200 bg-white/90 p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900/60">
                 <p class="text-xs text-slate-600 dark:text-slate-300">
-                  Tracks how coherent self-models drive trajectories through state space, redistribute causal influence, and modulate how conscious systems occupy time.
+                  Models the temporal viability, resilience, and adaptive range of reflexive organization without treating expansion as “more consciousness.”
                 </p>
               </div>
 
@@ -99,7 +104,7 @@ const keyBadges = [
                   rel="noopener noreferrer"
                   class="text-sky-700 underline underline-offset-4 hover:text-sky-600 dark:text-sky-300 dark:hover:text-sky-200"
                 >
-                  10.5281/zenodo.expansion-hypothesis
+                  10.5281/zenodo.20157592
                 </a>
               </div>
             </div>
@@ -165,9 +170,8 @@ const keyBadges = [
           <section id="overview" class="scroll-mt-32">
             <div class="rounded-2xl border border-slate-200 bg-white/80 p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900/40">
               <p>
-                The Expansion Hypothesis extends the Reflexive Coherence Model (RCM) by asking what happens once reflexive coherence is already in place. It treats
-                expansion as a dynamical property: coherent self-models drive trajectories through state space, redistribute causal influence, and modulate how
-                conscious systems occupy time.
+                The Expansion Hypothesis (TEH) is the dynamical layer of the broader RCM–TEH–PRS-AIS framework. It extends RCM by modeling how reflexive coherence
+                stabilizes, reorganizes, degrades, contracts, fragments, or transitions across time.
               </p>
             </div>
           </section>
@@ -176,7 +180,28 @@ const keyBadges = [
             <div class="rounded-2xl border border-slate-200 bg-white/80 p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900/40">
               <div class="mb-6">
                 <h2 class="text-xl font-semibold text-slate-900 dark:text-white md:text-2xl">
-                  From Reflexive Coherence to Dynamics
+                  From RCM to Temporal Dynamics
+                </h2>
+              </div>
+
+              <div class="space-y-3 rounded-2xl border border-slate-200 bg-white/90 p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900/60">
+                <p>
+                  RCM describes candidate structural and operational conditions for reflexive coherence. TEH asks how those conditions remain viable over time:
+                  whether reflexive organization becomes more resilient, enters a stable regime, contracts under perturbation, or loses coherence.
+                </p>
+                <p>
+                  In this framing, expansion is not a metaphysical process and not linear growth of consciousness. It refers to changes in viability, resilience,
+                  flexibility, and adaptive range within reflexive organization.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <section id="construct" class="scroll-mt-32">
+            <div class="rounded-2xl border border-slate-200 bg-white/80 p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900/40">
+              <div class="mb-6">
+                <h2 class="text-xl font-semibold text-slate-900 dark:text-white md:text-2xl">
+                  RCI as Local Observable, Ξ(t) as Dynamical Construct
                 </h2>
               </div>
 
@@ -184,19 +209,55 @@ const keyBadges = [
                 <div class="space-y-3 rounded-2xl border border-slate-200 bg-white/90 p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900/60">
                   <h3 class="text-base font-semibold text-slate-900 dark:text-white">RCI as a local observable</h3>
                   <p>
-                    The Reflexive Coherence Index (RCI) remains the local observable defined by RCM: a joint measurement of informational overlap and bidirectional
-                    causality between state and self-model. Within the Expansion Hypothesis, RCI is sampled over spatial and functional neighborhoods. Local increases
-                    indicate that reflexive loops are thickening; local drops expose boundaries where coherence fails or remains merely representational.
+                    The Reflexive Coherence Index (RCI) remains an operational proxy for reflexive coherence. Within TEH, RCI is treated as a local observable that can
+                    indicate changes in integration, operational self-modeling, reflexive causal coupling, and finite-window stability. It is not a direct measure of
+                    subjective experience and does not prove consciousness.
                   </p>
                 </div>
 
                 <div class="space-y-3 rounded-2xl border border-slate-200 bg-white/90 p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900/60">
-                  <h3 class="text-base font-semibold text-slate-900 dark:text-white">Ξ(t) as a global dynamic field</h3>
+                  <h3 class="text-base font-semibold text-slate-900 dark:text-white">Ξ(t) as a theoretical dynamical construct</h3>
                   <p>
-                    Ξ(t) denotes a coarse-grained field computed by integrating RCI samples over the whole architecture and weighting them by temporal depth. Let
-                    &lang;Ξ(t)&rang; denote the spatially averaged integral of Ξ(t); it serves as the aggregate indicator for identifying regime behavior. Ξ(t) is not a new
-                    measure—it is the dynamic profile that emerges when RCI is tracked across modules and timescales. Positive curvature (∂²&lang;Ξ&rang;/∂t² &gt; 0) in the temporal
-                    envelope of &lang;Ξ(t)&rang; signals that the reflexive manifold is expanding through additional layers or perspectives; negative curvature marks contraction.
+                    Ξ(t) is a theoretical dynamical construct representing the evolving viability, stability, and reorganization capacity of reflexive coherence
+                    across time. It is not a physical entity, not a phenomenological substance, and not a standalone proof of experience.
+                  </p>
+                  <p>
+                    TEH uses Ξ(t) to reason about temporal profiles: whether local indicators of reflexive coherence become more stable, lose viability, enter
+                    bounded attractor-like regimes, or fragment under changing constraints.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section id="schema" class="scroll-mt-32">
+            <div class="rounded-2xl border border-slate-200 bg-white/80 p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900/40">
+              <div class="mb-6">
+                <h2 class="text-xl font-semibold text-slate-900 dark:text-white md:text-2xl">Gain, Dissonance, Dissipation</h2>
+              </div>
+
+              <div class="space-y-5">
+                <div class="space-y-3 rounded-2xl border border-slate-200 bg-white/90 p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900/60">
+                  <h3 class="text-base font-semibold text-slate-900 dark:text-white">Gain</h3>
+                  <p>
+                    Gain refers to processes that stabilize or extend reflexive coherence: improved integration, more effective self-modeling, adaptive coupling,
+                    recovery after perturbation, or increased temporal viability within a bounded window.
+                  </p>
+                </div>
+
+                <div class="space-y-3 rounded-2xl border border-slate-200 bg-white/90 p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900/60">
+                  <h3 class="text-base font-semibold text-slate-900 dark:text-white">Dissonance</h3>
+                  <p>
+                    Dissonance is unresolved mismatch between global state, operational self-model, environmental constraints, and perturbational demands. It can
+                    signal pressure for reorganization, but it can also overload or destabilize reflexive structure.
+                  </p>
+                </div>
+
+                <div class="space-y-3 rounded-2xl border border-slate-200 bg-white/90 p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900/60">
+                  <h3 class="text-base font-semibold text-slate-900 dark:text-white">Dissipation</h3>
+                  <p>
+                    Dissipation describes degradation, fragmentation, or loss of viable reflexive organization. It may appear as weakened coupling, unstable
+                    self-modeling, reduced recovery capacity, or dependence on external scaffolding.
                   </p>
                 </div>
               </div>
@@ -211,29 +272,35 @@ const keyBadges = [
 
               <div class="space-y-5">
                 <div class="space-y-3 rounded-2xl border border-slate-200 bg-white/90 p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900/60">
-                  <h3 class="text-base font-semibold text-slate-900 dark:text-white">Expansive</h3>
+                  <h3 class="text-base font-semibold text-slate-900 dark:text-white">Expansive regime</h3>
                   <p>
-                    An expansive regime satisfies d&lang;Ξ&rang;/dt &gt; 0 for sustained intervals. Reflexive loops proliferate, propagate across modalities, and recruit higher-order
-                    controllers. The Hypothesis predicts that expansive phases increase both temporal horizon and the diversity of self-generated counterfactuals while
-                    remaining bounded by the reflexive coherence criteria defined by RCM.
+                    An expansive regime indicates increased viability, flexibility, or adaptive range of reflexive organization. It does not mean that a system has
+                    “more consciousness”; it means that coherence can be sustained or reorganized across a broader operational window.
                   </p>
                 </div>
 
                 <div class="space-y-3 rounded-2xl border border-slate-200 bg-white/90 p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900/60">
-                  <h3 class="text-base font-semibold text-slate-900 dark:text-white">Stationary</h3>
+                  <h3 class="text-base font-semibold text-slate-900 dark:text-white">Stationary regime</h3>
                   <p>
-                    Stationary regimes keep d&lang;Ξ&rang;/dt ≈ 0. Coherence is maintained but does not spread to new subspaces. Stationary behavior is not inert: it is the
-                    plateau where the system keeps reflexive coupling intact, protects existing attractors from noise, and conserves resources before the next expansion
-                    or contraction.
+                    A stationary regime preserves viable reflexive organization without major expansion or contraction. It can be a stable operating condition rather
+                    than a failure to develop.
                   </p>
                 </div>
 
                 <div class="space-y-3 rounded-2xl border border-slate-200 bg-white/90 p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900/60">
-                  <h3 class="text-base font-semibold text-slate-900 dark:text-white">Contractive</h3>
+                  <h3 class="text-base font-semibold text-slate-900 dark:text-white">Contractive regime</h3>
                   <p>
-                    Contractive regimes exhibit d&lang;Ξ&rang;/dt &lt; 0. Reflexive structure loses reach, either because integration drops or because control becomes exogenous.
-                    Contractive phases are still compatible with RCM—the model only requires that reflexive coherence exists locally. The Hypothesis treats contraction as
-                    an empirical signature of overload, damage, or deliberate shutdown.
+                    A contractive regime reflects narrowing temporal viability, reduced adaptive range, or weakened reflexive causal coupling. Contraction may be
+                    protective, pathological, or task-dependent, depending on context.
+                  </p>
+                </div>
+
+                <div class="space-y-3 rounded-2xl border border-slate-200 bg-white/90 p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900/60">
+                  <h3 class="text-base font-semibold text-slate-900 dark:text-white">Consolidation and fragmentation</h3>
+                  <p>
+                    Consolidation describes stabilization after reorganization, when coherence becomes less dependent on transient perturbations. Fragmentation
+                    describes the partial loss of coordinated reflexive organization, where components may remain locally coherent but fail to sustain a viable
+                    global pattern.
                   </p>
                 </div>
               </div>
@@ -250,17 +317,16 @@ const keyBadges = [
                 <div class="space-y-3 rounded-2xl border border-slate-200 bg-white/90 p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900/60">
                   <h3 class="text-base font-semibold text-slate-900 dark:text-white">Stability over time</h3>
                   <p>
-                    RCM already posits attractors stabilized by coherence. The Expansion Hypothesis formalizes their persistence criteria: an attractor is reflexive when
-                    Ξ(t) remains above a threshold across multiple windows and retains causal closure with its generating self-model. Stability is therefore expressed as
-                    bounded variance in both RCI and Ξ(t).
+                    Reflexive attractors are dynamically stable regimes in which reflexive coherence remains viable across temporal windows, with bounded variability
+                    and some recovery capacity after perturbation.
                   </p>
                 </div>
 
                 <div class="space-y-3 rounded-2xl border border-slate-200 bg-white/90 p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900/60">
                   <h3 class="text-base font-semibold text-slate-900 dark:text-white">Non-monotonic trajectories</h3>
                   <p>
-                    Expansion does not imply smooth monotonic growth. Trajectories can oscillate, overshoot, or temporarily fragment before re-consolidating. Ξ(t)
-                    captures these non-linear behaviors; reflexive attractors can bifurcate and later merge, provided the system reasserts coherence at the new scale.
+                    TEH expects non-monotonic behavior: systems may oscillate, overshoot, fragment, or re-consolidate. Attractors are therefore not static endpoints;
+                    they are temporally extended regimes whose stability must be evaluated across finite windows.
                   </p>
                 </div>
               </div>
@@ -275,24 +341,68 @@ const keyBadges = [
 
               <div class="space-y-5">
                 <div class="space-y-3 rounded-2xl border border-slate-200 bg-white/90 p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900/60">
-                  <h3 class="text-base font-semibold text-slate-900 dark:text-white">Regulation of the system’s own expansion dynamics</h3>
+                  <h3 class="text-base font-semibold text-slate-900 dark:text-white">Sensitivity to temporal persistence</h3>
                   <p>
-                    Meta-reflexive regulators predicted by the hypothesis model how expansion unfolds and intervene when oscillations threaten stability. They adjust
-                    coupling gains, gate which submodels can enter the reflexive core, and enforce conservation rules that keep Ξ(t) within operational bounds.
+                    Meta-reflexivity is a higher-order dynamical regime in which reflexive coherence becomes sensitive to the conditions of its own temporal persistence
+                    and participates in modulating future coherence conditions.
                   </p>
                 </div>
 
                 <div class="space-y-3 rounded-2xl border border-slate-200 bg-white/90 p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900/60">
                   <h3 class="text-base font-semibold text-slate-900 dark:text-white">Temporal self-modulation</h3>
                   <p>
-                    Temporal self-modulation treats differing clocks inside the system as adjustable parameters. These regulators rescale update intervals, allowing
-                    some components to slow down (preserving attractors) while others accelerate (probing new regimes). This explicit time management explains how
-                    expansion can be reversible and experimentally trackable.
+                    In operational terms, meta-reflexive organization would not merely maintain coherence; it would regulate the conditions under which future coherence
+                    can remain viable, recover, or reorganize.
                   </p>
                 </div>
               </div>
             </div>
           </section>
+
+          <section id="stability" class="scroll-mt-32">
+            <div class="rounded-2xl border border-slate-200 bg-white/80 p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900/40">
+              <div class="mb-6">
+                <h2 class="text-xl font-semibold text-slate-900 dark:text-white md:text-2xl">Contextual and Systemic Temporal Stability</h2>
+              </div>
+
+              <div class="space-y-5">
+                <div class="space-y-3 rounded-2xl border border-slate-200 bg-white/90 p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900/60">
+                  <h3 class="text-base font-semibold text-slate-900 dark:text-white">Contextual stability</h3>
+                  <p>
+                    Contextual temporal stability is coherence maintained by external scaffolds such as prompt history, memory buffers, retrieval systems, or
+                    environmental context. It can support locally coherent behavior without demonstrating durable systemic organization.
+                  </p>
+                </div>
+
+                <div class="space-y-3 rounded-2xl border border-slate-200 bg-white/90 p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900/60">
+                  <h3 class="text-base font-semibold text-slate-900 dark:text-white">Systemic stability</h3>
+                  <p>
+                    Systemic temporal stability is stronger: reflexive organization is preserved or reconstructed across perturbation, partial context loss, delayed
+                    feedback, or changing input conditions.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section id="matters" class="scroll-mt-32">
+            <div class="rounded-2xl border border-slate-200 bg-white/80 p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900/40">
+              <h2 class="text-xl font-semibold text-slate-900 dark:text-white md:text-2xl">Why TEH Matters for AI and Consciousness Research</h2>
+
+              <div class="mt-5 space-y-3 rounded-2xl border border-slate-200 bg-white/90 p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900/60">
+                <p>
+                  TEH offers a cautious vocabulary for studying temporal organization without treating fluent behavior, local coherence, or apparent self-reference
+                  as evidence of consciousness. It asks whether reflexive organization remains viable across time, perturbation, and context change.
+                </p>
+                <p>
+                  For artificial systems, this distinction matters because many systems may show contextual coherence while lacking systemic temporal stability.
+                  TEH therefore supports more careful comparison between scaffolded performance, durable reflexive organization, and genuinely open research questions.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <FrameworkNav current="teh" />
 
           <section id="references" class="scroll-mt-32">
             <div class="rounded-2xl border border-slate-200 bg-white/80 p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900/40">
@@ -301,11 +411,11 @@ const keyBadges = [
               <div class="mt-5 rounded-2xl border border-slate-200 bg-white/90 p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900/60">
                 <ul class="list-disc space-y-3 pl-5">
                   <li>
-                    Full paper: “The Expansion Hypothesis: Dynamical Regimes of Reflexive Coherence,” Aldo G. Malasomma (Toshak), Zenodo, 23 Dec 2025.
+                    Full paper: “The Expansion Hypothesis: Dynamical Regimes of Reflexive Coherence,” Aldo G. Malasomma (AKA Toshak), Version 1.2, Zenodo,
+                    10 May 2026.
                   </li>
                   <li>
-                    Core architecture: Reflexive Coherence Model overview at <code>/model</code> for structural definitions of RCI, reflexive layers, and boundary
-                    conditions.
+                    Core architecture: Reflexive Coherence Model overview at <code>/model</code> for the structural conditions that TEH treats dynamically.
                   </li>
                 </ul>
               </div>
@@ -318,10 +428,6 @@ const keyBadges = [
                   class="link-accent text-xs font-semibold"
                 >
                   Read on Zenodo →
-                </a>
-
-                <a href="/model" class="link-accent text-xs font-semibold">
-                  Back to the Model →
                 </a>
               </div>
             </div>

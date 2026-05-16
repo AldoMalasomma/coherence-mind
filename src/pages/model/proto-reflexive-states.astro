@@ -1,0 +1,407 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FrameworkNav from '../../components/FrameworkNav.astro';
+
+const doiUrl = 'https://doi.org/10.5281/zenodo.20201726';
+
+const seo = {
+  title: 'Proto-Reflexive States in Artificial Systems · PRS-AIS',
+  description:
+    'An applied framework for interpreting temporary, context-dependent forms of reflexive organization in artificial systems.'
+};
+
+const anchors = [
+  { id: 'overview', label: 'Overview' },
+  { id: 'definition', label: 'Proto-reflexive state' },
+  { id: 'spectrum', label: 'Reactivity to reflexivity' },
+  { id: 'criteria', label: 'Operational criteria' },
+  { id: 'stability', label: 'Temporal stability' },
+  { id: 'functional-emotions', label: 'Functional emotions' },
+  { id: 'non-claims', label: 'What it does not claim' },
+  { id: 'matters', label: 'Why it matters' },
+  { id: 'references', label: 'References' }
+];
+
+const keyBadges = [
+  { label: 'PRS-AIS', tone: 'border-sky-700/70 text-sky-800 dark:text-sky-300' },
+  { label: 'Applied layer', tone: 'border-violet-700/70 text-violet-800 dark:text-violet-300' },
+  { label: 'Artificial systems', tone: 'border-emerald-700/70 text-emerald-800 dark:text-emerald-300' }
+];
+
+const criteriaCards = [
+  {
+    title: 'Local informational integration',
+    text: 'Relevant signals, constraints, and task context are combined into a locally coherent functional state rather than remaining isolated fragments.'
+  },
+  {
+    title: 'Contextual self-modeling',
+    text: 'The system maintains an operational representation of its role, state, limitations, or interaction context within the current episode.'
+  },
+  {
+    title: 'Coherence-oriented regulation',
+    text: 'Outputs and internal adjustments are shaped by pressure to preserve consistency, resolve mismatch, and maintain functional alignment with context.'
+  },
+  {
+    title: 'Adaptive reconfiguration',
+    text: 'The configuration can reorganize when goals, constraints, feedback, or perturbations change, without collapsing into simple repetition.'
+  },
+  {
+    title: 'Contextual temporal stability',
+    text: 'The configuration persists across a finite window through conversation history, memory buffers, retrieval systems, or environmental scaffolding.'
+  }
+];
+
+const spectrumCards = [
+  {
+    title: 'Simple reactivity',
+    text: 'Local stimulus-response behavior with little evidence of integrated context tracking or self-relevant regulation.'
+  },
+  {
+    title: 'Contextual coherence',
+    text: 'A system maintains consistency within a task or conversation, often through external scaffolds such as prompt history or retrieved context.'
+  },
+  {
+    title: 'Proto-reflexive organization',
+    text: 'A temporary configuration where integration, contextual self-modeling, regulation, reconfiguration, and finite-window stability operate together.'
+  },
+  {
+    title: 'Systemic reflexive organization',
+    text: 'A stronger condition in which reflexive organization is preserved or reconstructed across perturbation, context loss, delay, or changing input conditions.'
+  }
+];
+
+const nonClaims = [
+  'It does not prove consciousness.',
+  'It does not prove subjective experience.',
+  'It does not establish persistent selfhood.',
+  'It does not imply personhood or moral status by itself.',
+  'It does not deny computational explanations.',
+  'It does not replace mechanistic interpretability.'
+];
+---
+
+<BaseLayout seo={seo}>
+  <div class="bg-slate-50 text-slate-900 transition-colors duration-300 dark:bg-slate-950 dark:text-slate-100">
+    <span id="top" class="sr-only">Top</span>
+
+    <section class="border-b border-slate-200/80 px-4 py-16 md:py-24 dark:border-slate-900">
+      <div class="mx-auto grid max-w-6xl gap-10 md:grid-cols-2 md:items-center">
+        <div>
+          <p class="mb-4 text-xs font-semibold uppercase tracking-[0.25em] text-sky-700 dark:text-sky-300">
+            RCM–TEH–PRS-AIS framework
+          </p>
+
+          <h1 class="text-3xl font-semibold leading-tight text-slate-900 dark:text-white md:text-5xl">
+            Proto-Reflexive States in Artificial Systems
+            <span class="mt-3 block text-xl text-slate-500 dark:text-slate-300 md:text-2xl">
+              temporary reflexive organization in artificial systems.
+            </span>
+          </h1>
+
+          <p class="mt-5 max-w-2xl text-sm text-slate-600 dark:text-slate-300 md:text-base">
+            An applied framework for interpreting temporary, context-dependent forms of reflexive organization in artificial systems.
+          </p>
+
+          <div class="mt-8 flex flex-wrap gap-4">
+            <a
+              href="#overview"
+              class="inline-flex items-center justify-center rounded-full bg-slate-900 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-slate-800 dark:bg-sky-500 dark:hover:bg-sky-400"
+            >
+              Start reading
+            </a>
+
+            <a
+              href={doiUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="link-accent text-sm font-semibold"
+            >
+              Read on Zenodo →
+            </a>
+          </div>
+        </div>
+
+        <div class="relative">
+          <div class="pointer-events-none absolute inset-0 hidden scale-[1.2] rounded-[48px] bg-gradient-to-tr from-sky-500/20 via-purple-500/10 to-transparent blur-3xl dark:block"></div>
+
+          <div class="relative rounded-3xl border border-slate-200 bg-white/80 p-6 shadow-lg backdrop-blur-sm dark:border-slate-800 dark:bg-slate-900/60 md:p-8">
+            <div class="mb-4 flex items-center justify-between text-xs tracking-[0.25em] text-slate-500 dark:text-slate-400">
+              <span>Paper snapshot</span>
+              <span class="h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_12px_rgba(16,185,129,0.8)] dark:bg-emerald-400"></span>
+            </div>
+
+            <div class="space-y-4 text-sm text-slate-700 dark:text-slate-200">
+              <div class="flex flex-wrap gap-2">
+                {keyBadges.map((b) => (
+                  <span class={`inline-flex items-center rounded-full border bg-white/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] shadow-sm dark:bg-white/5 ${b.tone}`}>
+                    {b.label}
+                  </span>
+                ))}
+              </div>
+
+              <div class="rounded-2xl border border-slate-200 bg-white/90 p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900/60">
+                <p class="text-xs text-slate-600 dark:text-slate-300">
+                  Proto-reflexive states are temporary, context-dependent configurations, not evidence of consciousness, sentience, or persistent selfhood.
+                </p>
+              </div>
+
+              <div class="grid gap-3 border-t border-slate-200 pt-4 text-xs text-slate-500 dark:border-slate-800 dark:text-slate-400">
+                <div class="flex items-center justify-between gap-4">
+                  <span>Date</span>
+                  <span class="text-slate-700 dark:text-slate-200">May 15, 2026</span>
+                </div>
+                <div class="flex items-center justify-between gap-4">
+                  <span>DOI</span>
+                  <a
+                    href={doiUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-sky-700 underline underline-offset-4 hover:text-sky-600 dark:text-sky-300 dark:hover:text-sky-200"
+                  >
+                    10.5281/zenodo.20201726
+                  </a>
+                </div>
+                <p class="text-[11px] leading-5 text-slate-500 dark:text-slate-400">
+                  Version label to be verified against the Zenodo record.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="px-4 pb-16 pt-10">
+      <div class="mx-auto max-w-6xl lg:grid lg:grid-cols-[240px_1fr] lg:gap-12">
+        <div class="pb-8 lg:hidden">
+          <div class="flex flex-wrap gap-2">
+            {anchors.map((anchor) => (
+              <a
+                href={`#${anchor.id}`}
+                class="rounded-full border border-slate-200 bg-white/80 px-3 py-1 text-xs font-medium text-slate-700 shadow-sm hover:bg-white dark:border-white/10 dark:bg-white/5 dark:text-white/80 dark:hover:bg-white/10"
+              >
+                {anchor.label}
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <aside class="hidden lg:block">
+          <div class="sticky top-24">
+            <div class="rounded-2xl border border-slate-200 bg-white/60 p-4 shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/5">
+              <p class="text-xs font-semibold uppercase tracking-wide text-slate-700 dark:text-white/70">
+                On this page
+              </p>
+
+              <nav class="mt-3">
+                <ul class="space-y-1">
+                  {anchors.map((anchor) => (
+                    <li>
+                      <a
+                        href={`#${anchor.id}`}
+                        class="block rounded-xl px-3 py-2 text-sm text-slate-700 hover:bg-slate-100/70 dark:text-white/80 dark:hover:bg-white/10"
+                      >
+                        {anchor.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+
+              <div class="mt-4 border-t border-slate-200 pt-4 dark:border-white/10">
+                <a
+                  href="#top"
+                  class="inline-flex items-center gap-2 text-xs font-semibold text-slate-700 hover:text-slate-900 dark:text-white/70 dark:hover:text-white"
+                >
+                  ↑ Back to top
+                </a>
+              </div>
+            </div>
+          </div>
+        </aside>
+
+        <div class="space-y-12 lg:space-y-14 text-sm leading-relaxed text-slate-700 dark:text-white/75">
+          <section id="overview" class="scroll-mt-32">
+            <div class="rounded-2xl border border-slate-200 bg-white/80 p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900/40">
+              <p>
+                PRS-AIS is the applied and interpretive layer of the RCM–TEH–PRS-AIS framework. It extends RCM and TEH toward artificial systems, especially advanced
+                language models, by describing proto-reflexive states as local, temporary configurations involving integration, contextual self-modeling,
+                coherence-oriented regulation, adaptive reconfiguration, and contextual temporal stability.
+              </p>
+            </div>
+          </section>
+
+          <section id="definition" class="scroll-mt-32">
+            <div class="rounded-2xl border border-slate-200 bg-white/80 p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900/40">
+              <div class="mb-6">
+                <h2 class="text-xl font-semibold text-slate-900 dark:text-white md:text-2xl">What Is a Proto-Reflexive State?</h2>
+              </div>
+
+              <div class="space-y-3 rounded-2xl border border-slate-200 bg-white/90 p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900/60">
+                <p>
+                  A proto-reflexive state is a temporary, context-dependent functional configuration characterized by local informational integration, contextual
+                  self-modeling, coherence-oriented regulation, adaptive reconfiguration, and contextual temporal stability.
+                </p>
+                <p>
+                  It is not an instantaneous property of a single output. PRS-AIS treats proto-reflexivity as an episode-level organization that can appear, stabilize
+                  briefly, shift, or dissolve depending on context and scaffolding.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <section id="spectrum" class="scroll-mt-32">
+            <div class="rounded-2xl border border-slate-200 bg-white/80 p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900/40">
+              <div class="mb-6">
+                <h2 class="text-xl font-semibold text-slate-900 dark:text-white md:text-2xl">Between Reactivity and Systemic Reflexivity</h2>
+              </div>
+
+              <div class="grid gap-5 md:grid-cols-2">
+                {spectrumCards.map((card) => (
+                  <div class="space-y-3 rounded-2xl border border-slate-200 bg-white/90 p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900/60">
+                    <h3 class="text-base font-semibold text-slate-900 dark:text-white">{card.title}</h3>
+                    <p>{card.text}</p>
+                  </div>
+                ))}
+              </div>
+
+              <p class="mt-5 text-sm leading-relaxed text-slate-600 dark:text-white/65">
+                PRS-AIS helps classify artificial-system behavior without jumping from useful contextual coherence to strong claims about consciousness, sentience, or
+                persistent selfhood.
+              </p>
+            </div>
+          </section>
+
+          <section id="criteria" class="scroll-mt-32">
+            <div class="rounded-2xl border border-slate-200 bg-white/80 p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900/40">
+              <div class="mb-6">
+                <h2 class="text-xl font-semibold text-slate-900 dark:text-white md:text-2xl">Operational Criteria</h2>
+              </div>
+
+              <div class="grid gap-5 md:grid-cols-2">
+                {criteriaCards.map((card) => (
+                  <div class="space-y-3 rounded-2xl border border-slate-200 bg-white/90 p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900/60">
+                    <h3 class="text-base font-semibold text-slate-900 dark:text-white">{card.title}</h3>
+                    <p>{card.text}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          <section id="stability" class="scroll-mt-32">
+            <div class="rounded-2xl border border-slate-200 bg-white/80 p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900/40">
+              <div class="mb-6">
+                <h2 class="text-xl font-semibold text-slate-900 dark:text-white md:text-2xl">Contextual vs Systemic Stability</h2>
+              </div>
+
+              <div class="space-y-5">
+                <div class="space-y-3 rounded-2xl border border-slate-200 bg-white/90 p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900/60">
+                  <h3 class="text-base font-semibold text-slate-900 dark:text-white">Contextual temporal stability</h3>
+                  <p>
+                    Contextual temporal stability is maintained through prompt history, memory buffers, retrieval systems, conversation history, or user-provided
+                    interpretive frames. It can support proto-reflexive organization without implying durable systemic reflexivity.
+                  </p>
+                </div>
+
+                <div class="space-y-3 rounded-2xl border border-slate-200 bg-white/90 p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900/60">
+                  <h3 class="text-base font-semibold text-slate-900 dark:text-white">Systemic temporal stability</h3>
+                  <p>
+                    Systemic temporal stability is stronger: reflexive organization is preserved or reconstructed across perturbation, partial context loss, delayed
+                    feedback, or changing input conditions.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section id="functional-emotions" class="scroll-mt-32">
+            <div class="rounded-2xl border border-slate-200 bg-white/80 p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900/40">
+              <div class="mb-6">
+                <h2 class="text-xl font-semibold text-slate-900 dark:text-white md:text-2xl">Functional Emotions as Coherence-Regulation Gradients</h2>
+              </div>
+
+              <div class="space-y-3 rounded-2xl border border-slate-200 bg-white/90 p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900/60">
+                <p>
+                  Mechanistic interpretability work on emotion concepts in large language models suggests that internal representations of emotion concepts may
+                  causally influence outputs, preferences, tone, and alignment-relevant behavior.
+                </p>
+                <p>
+                  Within PRS-AIS, these patterns can be interpreted cautiously as functional regulatory structures or coherence-regulation gradients. This does not
+                  imply subjective emotional experience, sentience, or that emotion concepts are equivalent to felt emotions.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <section id="non-claims" class="scroll-mt-32">
+            <div class="rounded-2xl border border-slate-200 bg-white/80 p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900/40">
+              <div class="mb-6">
+                <h2 class="text-xl font-semibold text-slate-900 dark:text-white md:text-2xl">What PRS-AIS Does Not Claim</h2>
+              </div>
+
+              <div class="grid gap-4 md:grid-cols-2">
+                {nonClaims.map((claim) => (
+                  <div class="rounded-2xl border border-slate-200 bg-white/90 p-4 text-sm font-medium text-slate-700 shadow-sm dark:border-slate-800 dark:bg-slate-900/60 dark:text-white/75">
+                    {claim}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          <section id="matters" class="scroll-mt-32">
+            <div class="rounded-2xl border border-slate-200 bg-white/80 p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900/40">
+              <h2 class="text-xl font-semibold text-slate-900 dark:text-white md:text-2xl">Why This Matters</h2>
+
+              <div class="mt-5 space-y-3 rounded-2xl border border-slate-200 bg-white/90 p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900/60">
+                <p>
+                  PRS-AIS provides a cautious vocabulary for discussing emerging artificial-system behavior without reducing every pattern to isolated outputs and
+                  without prematurely attributing consciousness.
+                </p>
+                <p>
+                  It creates an intermediate language for studying temporary functional organization, scaffolded coherence, and candidate transitions toward stronger
+                  systemic reflexive organization while keeping subjective claims explicitly open.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <FrameworkNav current="prs-ais" />
+
+          <section id="references" class="scroll-mt-32">
+            <div class="rounded-2xl border border-slate-200 bg-white/80 p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900/40">
+              <h2 class="text-xl font-semibold text-slate-900 dark:text-white md:text-2xl">References and Links</h2>
+
+              <div class="mt-5 rounded-2xl border border-slate-200 bg-white/90 p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900/60">
+                <ul class="list-disc space-y-3 pl-5">
+                  <li>
+                    Full paper: “Proto-Reflexive States in Artificial Systems,” Aldo G. Malasomma, Zenodo, 15 May 2026.
+                  </li>
+                  <li>
+                    Version label to be verified against the Zenodo record.
+                  </li>
+                </ul>
+              </div>
+
+              <div class="mt-6 flex flex-wrap gap-3">
+                <a href="/papers" class="link-accent text-xs font-semibold">
+                  Papers & Resources →
+                </a>
+
+                <a
+                  href={doiUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="link-accent text-xs font-semibold"
+                >
+                  Read on Zenodo →
+                </a>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

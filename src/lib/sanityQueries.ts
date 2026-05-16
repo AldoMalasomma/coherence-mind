@@ -188,7 +188,11 @@ export function getBlogPostBySlug(slug: string) {
         _id,
         name,
         "slug": slug.current,
-        bio
+        bio,
+        "avatar": {
+          "url": avatar.asset->url,
+          "alt": coalesce(avatar.alt, name + " portrait")
+        }
       }
     }`,
     { slug }

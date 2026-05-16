@@ -112,6 +112,7 @@ export type Author = {
   name: string;
   slug: string;
   bio?: PortableTextBlock[];
+  avatar?: ImageAsset;
 };
 
 export type BlogPost = {

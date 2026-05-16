@@ -1,6 +1,5 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import PageTitle from '../components/PageTitle.astro';
 import TimelineItem from '../components/TimelineItem.astro';
 import { getTimeline } from '../lib/sanityQueries';
 import type { TimelineEvent } from '../lib/types';
@@ -10,8 +9,71 @@ const eventsRaw = ((await getTimeline()) ?? []) as TimelineEvent[];
 const seo = {
   title: 'Timeline — CoherenceMind',
   description:
-    'A conceptual timeline outlining the emergence, formalization, and publication of the Reflexive Coherence Model (2022–2025).'
+    'A conceptual timeline outlining the emergence, formalization, and 2026 maturation of the RCM–TEH–PRS-AIS framework.'
 };
+
+const doiBody = (doi: string, href: string): TimelineEvent['body'] => [
+  {
+    _type: 'block',
+    style: 'normal',
+    markDefs: [{ _key: 'doi-link', _type: 'link', href }],
+    children: [
+      { _type: 'span', text: 'DOI: ', marks: [] },
+      { _type: 'span', text: doi, marks: ['doi-link'] }
+    ]
+  }
+] as TimelineEvent['body'];
+
+const localTimelineEvents: TimelineEvent[] = [
+  {
+    _id: 'local-2026-functional-emotion-representations',
+    title: 'Functional emotion representations in LLMs',
+    slug: 'functional-emotion-representations-in-llms',
+    date: '2026-04-02',
+    dateFormatted: 'April 2, 2026',
+    summary:
+      'Anthropic publishes mechanistic interpretability work showing that internal representations of emotion concepts in a large language model can causally influence outputs, preferences, and alignment-relevant behavior. The result becomes an important external reference point for interpreting functional emotional dynamics without equating them with subjective experience.'
+  },
+  {
+    _id: 'local-2026-rcm-v12',
+    title: 'RCM v1.2 reframes reflexive coherence operationally',
+    slug: 'rcm-v12-reframes-reflexive-coherence-operationally',
+    date: '2026-05-09',
+    dateFormatted: 'May 9, 2026',
+    summary:
+      'The Reflexive Coherence Model is revised into a more cautious bridge framework. The update clarifies operational self-modeling, reflexive causal coupling, contextual vs systemic temporal stability, and the status of RCI as a proxy rather than proof of subjective experience.',
+    body: doiBody('10.5281/zenodo.20106158', 'https://doi.org/10.5281/zenodo.20106158')
+  },
+  {
+    _id: 'local-2026-teh-v12',
+    title: 'TEH v1.2 becomes the dynamical layer',
+    slug: 'teh-v12-becomes-the-dynamical-layer',
+    date: '2026-05-10',
+    dateFormatted: 'May 10, 2026',
+    summary:
+      'The Expansion Hypothesis is revised as the temporal-dynamical layer of the framework. It clarifies Ξ(t) as a dynamical construct rather than a literal physical field, and formalizes gain, dissonance, dissipation, attractors, consolidation, contraction, fragmentation, and meta-reflexivity.',
+    body: doiBody('10.5281/zenodo.20157592', 'https://doi.org/10.5281/zenodo.20157592')
+  },
+  {
+    _id: 'local-2026-prs-ais',
+    title: 'Proto-reflexive states in artificial systems',
+    slug: 'proto-reflexive-states-in-artificial-systems',
+    date: '2026-05-15',
+    dateFormatted: 'May 15, 2026',
+    summary:
+      'The applied layer is introduced for artificial systems. PRS-AIS defines proto-reflexive states as temporary, context-dependent configurations involving local integration, contextual self-modeling, coherence-oriented regulation, adaptive reconfiguration, and contextual temporal stability.',
+    body: doiBody('10.5281/zenodo.20201726', 'https://doi.org/10.5281/zenodo.20201726')
+  }
+];
+
+const eventsBySlug = new Map<string, TimelineEvent>();
+[...eventsRaw, ...localTimelineEvents].forEach((event) => {
+  if (event.slug && !eventsBySlug.has(event.slug)) {
+    eventsBySlug.set(event.slug, event);
+  }
+});
+
+const timelineSource = Array.from(eventsBySlug.values());
 
 // Helpers
 const getYear = (event: TimelineEvent): number | null => {
@@ -25,12 +87,12 @@ const getYear = (event: TimelineEvent): number | null => {
 };
 
 const START_YEAR = 2022;
-const END_YEAR = 2025;
+const END_YEAR = 2026;
 
 // Keep only events with a valid year inside range
 type TimelineEventWithYear = TimelineEvent & { __year: number };
 
-const events: TimelineEventWithYear[] = eventsRaw
+const events: TimelineEventWithYear[] = timelineSource
   .map((ev) => ({ ...ev, __year: getYear(ev) }))
   .filter((ev): ev is TimelineEventWithYear => {
     const year = ev.__year;
@@ -59,115 +121,177 @@ for (const group of groups) {
     return bd - ad; // most recent first within year
   });
 }
+
+const timelineBadges = [
+  { label: '2022–2026', tone: 'border-sky-700/70 text-sky-800 dark:text-sky-300' },
+  { label: 'Framework history', tone: 'border-violet-700/70 text-violet-800 dark:text-violet-300' },
+  { label: 'RCM–TEH–PRS-AIS', tone: 'border-emerald-700/70 text-emerald-800 dark:text-emerald-300' }
+];
 ---
 <BaseLayout seo={seo}>
-  <PageTitle
-    eyebrow="history"
-    title="Timeline"
-    intro="A conceptual timeline documenting how the Reflexive Coherence Model acquired a distinct theoretical and formal structure."
-  />
+  <div class="bg-slate-50 text-slate-900 transition-colors duration-300 dark:bg-slate-950 dark:text-slate-100">
+    <span id="top" class="sr-only">Top</span>
 
-  <section class="pb-20">
-    <div class="container">
-      {/* Method note */}
-      <div class="mb-10 rounded-2xl border border-slate-200 bg-white/60 p-6 text-slate-700 shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/5 dark:text-white/75">
-        <h2 class="mb-2 text-sm font-semibold tracking-wide text-slate-900 dark:text-white">
-          Method note
-        </h2>
-        <p class="text-sm leading-relaxed">
-          This page focuses on the period <span class="font-semibold">2022–2025</span>, when the Reflexive Coherence Model (RCM)
-          took a distinct theoretical and formal shape. Earlier exploratory phases and later extensions are intentionally excluded.
-          The goal is to clarify the internal development of the model — not to document personal history or applications.
-        </p>
-      </div>
+    <section class="border-b border-slate-200/80 px-4 py-16 md:py-24 dark:border-slate-900">
+      <div class="mx-auto grid max-w-6xl gap-10 md:grid-cols-2 md:items-center">
+        <div>
+          <p class="mb-4 text-xs font-semibold uppercase tracking-[0.25em] text-sky-700 dark:text-sky-300">
+            history
+          </p>
 
-      {groups.length ? (
-        <>
-          {/* Mobile year chips */}
-          <nav class="mb-10 lg:hidden" aria-label="Timeline years">
-            <div class="flex gap-2 overflow-x-auto pb-2">
-              {groups.map((g) => (
-                <a
-                  href={`#year-${g.year}`}
-                  class="shrink-0 rounded-full border border-slate-200 bg-white/70 px-3 py-1 text-xs font-semibold text-slate-700 shadow-sm backdrop-blur hover:bg-white dark:border-white/10 dark:bg-white/5 dark:text-white/75 dark:hover:bg-white/10"
-                >
-                  {g.year}
-                </a>
-              ))}
+          <h1 class="text-3xl font-semibold leading-tight text-slate-900 dark:text-white md:text-5xl">
+            Timeline
+            <span class="mt-3 block text-xl text-slate-500 dark:text-slate-300 md:text-2xl">
+              evolution of the framework.
+            </span>
+          </h1>
+
+          <p class="mt-5 max-w-2xl text-sm text-slate-600 dark:text-slate-300 md:text-base">
+            A conceptual timeline documenting how the Reflexive Coherence Model matured into the RCM–TEH–PRS-AIS framework.
+          </p>
+        </div>
+
+        <div class="relative">
+          <div class="pointer-events-none absolute inset-0 hidden scale-[1.2] rounded-[48px] bg-gradient-to-tr from-sky-500/20 via-purple-500/10 to-transparent blur-3xl dark:block"></div>
+
+          <div class="relative rounded-3xl border border-slate-200 bg-white/80 p-6 shadow-lg backdrop-blur-sm dark:border-slate-800 dark:bg-slate-900/60 md:p-8">
+            <div class="mb-4 flex items-center justify-between text-xs tracking-[0.25em] text-slate-500 dark:text-slate-400">
+              <span>Timeline snapshot</span>
+              <span class="h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_12px_rgba(16,185,129,0.8)] dark:bg-emerald-400"></span>
             </div>
-          </nav>
 
-          <div class="grid gap-12 lg:grid-cols-[140px_1fr]">
-            {/* LEFT: sticky years (desktop) */}
-            <aside class="hidden lg:block">
-              <div class="sticky top-28 space-y-3">
-                <div class="text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-white/50">
-                  On this page
+            <div class="space-y-4 text-sm text-slate-700 dark:text-slate-200">
+              <div class="flex flex-wrap gap-2">
+                {timelineBadges.map((badge) => (
+                  <span class={`inline-flex items-center rounded-full border bg-white/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] shadow-sm dark:bg-white/5 ${badge.tone}`}>
+                    {badge.label}
+                  </span>
+                ))}
+              </div>
+
+              <div class="rounded-2xl border border-slate-200 bg-white/90 p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900/60">
+                <p class="text-xs text-slate-600 dark:text-slate-300">
+                  A conceptual chronology of how the project matured from early RCM formalization into a three-part framework: architecture, temporal dynamics, and artificial-system interpretation.
+                </p>
+              </div>
+
+              <div class="grid gap-3 text-xs text-slate-600 dark:text-slate-400 sm:grid-cols-3">
+                <div class="rounded-2xl border border-slate-200/80 bg-white/70 p-3 dark:border-slate-800 dark:bg-slate-950/40">
+                  <span class="block font-semibold text-slate-900 dark:text-white">5 years</span>
+                  traced arc
                 </div>
+                <div class="rounded-2xl border border-slate-200/80 bg-white/70 p-3 dark:border-slate-800 dark:bg-slate-950/40">
+                  <span class="block font-semibold text-slate-900 dark:text-white">3 layers</span>
+                  framework map
+                </div>
+                <div class="rounded-2xl border border-slate-200/80 bg-white/70 p-3 dark:border-slate-800 dark:bg-slate-950/40">
+                  <span class="block font-semibold text-slate-900 dark:text-white">2026</span>
+                  maturation
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="px-4 pb-16 pt-10">
+      <div class="mx-auto max-w-6xl">
+        <div class="mb-10 rounded-2xl border border-slate-200 bg-white/80 p-6 text-slate-700 shadow-sm backdrop-blur-sm dark:border-slate-800 dark:bg-slate-900/50 dark:text-slate-300">
+          <h2 class="mb-2 text-sm font-semibold uppercase tracking-[0.2em] text-slate-900 dark:text-white">
+            Method note
+          </h2>
+          <p class="text-sm leading-relaxed">
+            This page focuses on the period <span class="font-semibold">2022–2026</span>, from the early formalization of the
+            Reflexive Coherence Model (RCM) to its maturation into a three-part framework: RCM as the foundational architecture,
+            TEH as the temporal-dynamical layer, and PRS-AIS as the applied interpretive layer for artificial systems. The goal is
+            to clarify the internal development of the framework — not to claim metaphysical certainty or document personal history.
+          </p>
+        </div>
+
+        {groups.length ? (
+          <>
+            <nav class="mb-10 lg:hidden" aria-label="Timeline years">
+              <div class="flex gap-2 overflow-x-auto pb-2">
                 {groups.map((g) => (
                   <a
                     href={`#year-${g.year}`}
-                    class="block rounded-xl px-3 py-2 text-sm font-semibold text-slate-600 hover:bg-slate-100/70 hover:text-slate-900 dark:text-white/60 dark:hover:bg-white/10 dark:hover:text-white"
+                    class="shrink-0 rounded-full border border-slate-200 bg-white/80 px-3 py-1 text-xs font-semibold text-slate-700 shadow-sm transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-sky-300/50 dark:border-slate-800 dark:bg-slate-900/50 dark:text-slate-200 dark:hover:bg-slate-800 dark:focus:ring-sky-400/30"
                   >
                     {g.year}
                   </a>
                 ))}
-
-                <a
-                  href="#top"
-                  class="mt-4 inline-flex items-center gap-2 rounded-xl px-3 py-2 text-xs font-semibold text-slate-500 hover:bg-slate-100/70 hover:text-slate-900 dark:text-white/50 dark:hover:bg-white/10 dark:hover:text-white"
-                >
-                  Back to top
-                </a>
               </div>
-            </aside>
+            </nav>
 
-            {/* RIGHT: timeline */}
-            <div class="relative" id="top">
-              {/* vertical line */}
-              <div class="absolute left-3 top-0 h-full w-px bg-slate-200 dark:bg-white/10" />
+            <div class="lg:grid lg:grid-cols-[240px_1fr] lg:gap-12">
+              <aside class="hidden lg:block">
+                <div class="sticky top-24 rounded-2xl border border-slate-200 bg-white/80 p-4 shadow-sm backdrop-blur-sm dark:border-slate-800 dark:bg-slate-900/50">
+                  <p class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-700 dark:text-slate-300">
+                    On this page
+                  </p>
+                  <div class="mt-3 space-y-2">
+                    {groups.map((g) => (
+                      <a
+                        href={`#year-${g.year}`}
+                        class="block rounded-xl border border-transparent px-3 py-2 text-sm font-semibold text-slate-600 transition hover:border-slate-200 hover:bg-white hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-sky-300/50 dark:text-slate-300 dark:hover:border-slate-800 dark:hover:bg-slate-800 dark:hover:text-white dark:focus:ring-sky-400/30"
+                      >
+                        {g.year}
+                      </a>
+                    ))}
 
-              <div class="space-y-16">
-                {groups.map((group) => (
-                  <section id={`year-${group.year}`} class="relative scroll-mt-28">
-                    {/* year header */}
-                    <div class="mb-6 flex items-center gap-4">
-                      <div class="relative z-10 flex h-6 w-6 items-center justify-center rounded-full border border-slate-300 bg-white shadow-sm dark:border-white/20 dark:bg-slate-900">
-                        <div class="h-2 w-2 rounded-full bg-slate-500 dark:bg-white/60" />
+                    <a
+                      href="#top"
+                      class="mt-4 inline-flex items-center gap-2 rounded-xl border border-transparent px-3 py-2 text-xs font-semibold text-slate-500 transition hover:border-slate-200 hover:bg-white hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-sky-300/50 dark:text-slate-400 dark:hover:border-slate-800 dark:hover:bg-slate-800 dark:hover:text-white dark:focus:ring-sky-400/30"
+                    >
+                      Back to top
+                    </a>
+                  </div>
+                </div>
+              </aside>
+
+              <div class="relative">
+                <div class="absolute left-3 top-0 h-full w-px bg-slate-200 dark:bg-slate-800" />
+
+                <div class="space-y-14 lg:space-y-16">
+                  {groups.map((group) => (
+                    <section id={`year-${group.year}`} class="relative scroll-mt-28">
+                      <div class="mb-6 flex items-center gap-4">
+                        <div class="relative z-10 flex h-6 w-6 items-center justify-center rounded-full border border-slate-300 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
+                          <div class="h-2 w-2 rounded-full bg-sky-600 dark:bg-sky-300" />
+                        </div>
+                        <h2 class="text-base font-semibold text-slate-900 dark:text-white">
+                          {group.year}
+                        </h2>
                       </div>
-                      <h2 class="text-base font-semibold text-slate-900 dark:text-white">
-                        {group.year}
-                      </h2>
-                    </div>
 
-                    {/* events */}
-                    <div class="ml-8 space-y-8">
-                      {group.items.map((event) => (
-                        <TimelineItem event={event} />
-                      ))}
-                    </div>
-                  </section>
-                ))}
-              </div>
+                      <ol class="ml-8 space-y-8">
+                        {group.items.map((event) => (
+                          <TimelineItem event={event} />
+                        ))}
+                      </ol>
+                    </section>
+                  ))}
+                </div>
 
-              {/* Closing note */}
-              <div class="mt-14 rounded-2xl border border-slate-200 bg-white/60 p-6 text-slate-700 shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/5 dark:text-white/75">
-                <h2 class="mb-2 text-sm font-semibold tracking-wide text-slate-900 dark:text-white">
-                  Scope
-                </h2>
-                <p class="text-sm leading-relaxed">
-                  This timeline documents the internal development of the model. Exploratory extensions and open questions are discussed elsewhere,
-                  primarily within the <a href="/notes" class="font-semibold underline underline-offset-4 hover:opacity-80">Notes</a> section.
-                </p>
+                <div class="mt-14 rounded-2xl border border-slate-200 bg-white/80 p-6 text-slate-700 shadow-sm backdrop-blur-sm dark:border-slate-800 dark:bg-slate-900/50 dark:text-slate-300">
+                  <h2 class="mb-2 text-sm font-semibold uppercase tracking-[0.2em] text-slate-900 dark:text-white">
+                    Scope
+                  </h2>
+                  <p class="text-sm leading-relaxed">
+                    This timeline documents the internal development of the framework. Exploratory questions and provisional interpretations are
+                    discussed elsewhere, primarily within the <a href="/notes" class="font-semibold underline underline-offset-4 transition hover:opacity-80 focus:outline-none focus:ring-2 focus:ring-sky-300/50 dark:focus:ring-sky-400/30">Notes</a> section.
+                  </p>
+                </div>
               </div>
             </div>
+          </>
+        ) : (
+          <div class="rounded-2xl border border-slate-200 bg-white/80 p-6 text-slate-600 shadow-sm backdrop-blur-sm dark:border-slate-800 dark:bg-slate-900/50 dark:text-slate-300">
+            Timeline entries will be published soon.
           </div>
-        </>
-      ) : (
-        <div class="rounded-2xl border border-slate-200 bg-white/60 p-6 text-slate-600 shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/5 dark:text-white/70">
-          Timeline entries will be published soon.
-        </div>
-      )}
-    </div>
-  </section>
+        )}
+      </div>
+    </section>
+  </div>
 </BaseLayout>

@@ -5,11 +5,13 @@ const { posts = [] as BlogPostSummary[] } = Astro.props;
 ---
 
 {posts.length ? (
-  <div id="blogList" class="grid gap-8 lg:grid-cols-3">
+  <div id="blogList" class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
     {posts.map((post: BlogPostSummary) => (
       <BlogPostPreview post={post} />
     ))}
   </div>
 ) : (
-  <p class="text-slate-600 dark:text-white/70">Articles are coming soon.</p>
+  <p class="rounded-2xl border border-slate-200 bg-white/80 p-6 text-slate-600 shadow-sm backdrop-blur-sm dark:border-slate-800 dark:bg-slate-900/50 dark:text-slate-300">
+    Articles are coming soon.
+  </p>
 )}

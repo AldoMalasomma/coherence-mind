@@ -1,7 +1,6 @@
 ---
 import type { PortableTextBlock } from '@portabletext/types';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import PageTitle from '../components/PageTitle.astro';
 import GlossaryItem from '../components/GlossaryItem.astro';
 import { getGlossary } from '../lib/sanityQueries';
 import type { Concept, RelatedConcept } from '../lib/types';
@@ -12,16 +11,12 @@ type GlossaryConcept = Concept & {
   what_is?: string;
   whatIsText?: string;
   whatNotText?: string;
+  aliasSlugs?: string[];
+  matchTerms?: string[];
+  matchSlugs?: string[];
 };
 
 type PortableChild = { text?: string };
-
-const glossary = ((await getGlossary()) ?? []) as GlossaryConcept[];
-
-const seo = {
-  title: 'Glossary — CoherenceMind',
-  description: 'Core vocabulary for the Reflexive Coherence Model.'
-};
 
 // Helpers (server-side)
 const normalize = (s = ''): string =>
@@ -29,6 +24,130 @@ const normalize = (s = ''): string =>
 
 const getLabel = (concept: GlossaryConcept): string =>
   (concept.title ?? concept.name ?? concept.term ?? concept.label ?? '').toString();
+
+const fetchedGlossary = ((await getGlossary()) ?? []) as GlossaryConcept[];
+
+const localTerminology: GlossaryConcept[] = [
+  {
+    _id: 'local-reflexive-causal-coupling',
+    term: 'Reflexive Causal Coupling',
+    slug: 'reflexive-causal-coupling',
+    aliasSlugs: ['reflexive-causal-closure'],
+    matchTerms: ['Reflexive Causal Coupling', 'Reflexive Causal Closure'],
+    matchSlugs: ['reflexive-causal-coupling', 'reflexive-causal-closure'],
+    shortDefinition:
+      'A bidirectional, dynamically relevant relation between a system’s global state and its operational self-model.',
+    whatItIs:
+      'The global state influences the self-model, the self-model influences future global states, and the loop remains relevant across time. Formerly: Reflexive Causal Closure.',
+    whatItIsNot:
+      'It is not absolute causal closure. No real physical or computational system is fully causally closed.'
+  },
+  {
+    _id: 'local-contextual-temporal-stability',
+    term: 'Contextual Temporal Stability',
+    slug: 'contextual-temporal-stability',
+    matchTerms: ['Contextual Temporal Stability'],
+    matchSlugs: ['contextual-temporal-stability'],
+    shortDefinition:
+      'A form of temporal stability in which coherence is maintained primarily through externally supplied scaffolds.',
+    whatItIs:
+      'Coherence supported by conversation history, prompt structure, memory buffers, retrieval systems, or environmental context.',
+    whatItIsNot:
+      'It is not evidence that reflexive organization remains robust after context loss or across major perturbations.'
+  },
+  {
+    _id: 'local-functional-emotion',
+    term: 'Functional Emotion',
+    slug: 'functional-emotion',
+    matchTerms: ['Functional Emotion'],
+    matchSlugs: ['functional-emotion'],
+    shortDefinition:
+      'A behaviorally relevant internal representation of an emotion concept that can modulate outputs, preferences, and alignment-relevant behavior.',
+    whatItIs:
+      'A functional control variable or representational pattern that can shape behavior in emotion-like ways.',
+    whatItIsNot:
+      'It does not imply subjective emotional experience.'
+  },
+  {
+    _id: 'local-proto-reflexive-state',
+    term: 'Proto-Reflexive State',
+    slug: 'proto-reflexive-state',
+    matchTerms: ['Proto-Reflexive State', 'Proto-Reflexive States'],
+    matchSlugs: ['proto-reflexive-state', 'proto-reflexive-states'],
+    shortDefinition:
+      'A temporary, context-dependent functional configuration with local integration, contextual self-modeling, regulation, reconfiguration, and contextual temporal stability.',
+    whatItIs:
+      'A candidate proto-reflexive configuration that can appear within bounded contexts and remain functionally coherent for a limited window.',
+    whatItIsNot:
+      'It is not proof of consciousness, subjective experience, or durable systemic reflexivity.'
+  },
+  {
+    _id: 'local-reflexive-attractor',
+    term: 'Reflexive Attractor',
+    slug: 'reflexive-attractor',
+    matchTerms: ['Reflexive Attractor', 'Reflexive Attractors'],
+    matchSlugs: ['reflexive-attractor', 'reflexive-attractors'],
+    shortDefinition:
+      'A relatively stable dynamical regime in which reflexive coherence remains viable across a temporal window.',
+    whatItIs:
+      'A bounded regime with variability and some recovery capacity after perturbation.',
+    whatItIsNot:
+      'It is not a static state or a guarantee that coherence will persist indefinitely.'
+  },
+  {
+    _id: 'local-reflexive-coherence-index',
+    term: 'Reflexive Coherence Index / RCI',
+    slug: 'reflexive-coherence-index-rci',
+    aliasSlugs: ['reflexive-coherence-index', 'rci'],
+    matchTerms: ['Reflexive Coherence Index', 'Reflexive Coherence Index / RCI', 'RCI'],
+    matchSlugs: ['reflexive-coherence-index-rci', 'reflexive-coherence-index', 'rci'],
+    shortDefinition:
+      'An operational proxy or observable for reflexive coherence.',
+    whatItIs:
+      'A way to track observable reflexive informational organization, including integration, operational self-modeling, coupling, and finite-window stability.',
+    whatItIsNot:
+      'It is not a direct measure of subjective experience and not proof of consciousness.'
+  },
+  {
+    _id: 'local-systemic-temporal-stability',
+    term: 'Systemic Temporal Stability',
+    slug: 'systemic-temporal-stability',
+    matchTerms: ['Systemic Temporal Stability'],
+    matchSlugs: ['systemic-temporal-stability'],
+    shortDefinition:
+      'A stronger form of temporal stability in which reflexive organization persists or can be reconstructed across disruption.',
+    whatItIs:
+      'Reflexive organization that remains viable across perturbation, partial context loss, delayed feedback, or changing input conditions.',
+    whatItIsNot:
+      'It is not merely coherence maintained by an intact prompt, memory buffer, or local context.'
+  }
+];
+
+const matchesLocalTerm = (concept: GlossaryConcept, local: GlossaryConcept): boolean => {
+  const label = getLabel(concept);
+  const terms = local.matchTerms ?? [local.term];
+  const slugs = local.matchSlugs ?? [local.slug];
+  return terms.some((term) => normalize(term) === normalize(label)) || slugs.includes(concept.slug);
+};
+
+let glossary = [...fetchedGlossary];
+
+localTerminology.forEach((local) => {
+  const existing = glossary.find((concept) => matchesLocalTerm(concept, local));
+  glossary = glossary.filter((concept) => !matchesLocalTerm(concept, local));
+  glossary.push({
+    ...(existing ?? {}),
+    ...local,
+    _id: existing?._id ?? local._id,
+    fullDefinition: local.fullDefinition,
+    relatedConcepts: local.relatedConcepts ?? []
+  });
+});
+
+const seo = {
+  title: 'Glossary — CoherenceMind',
+  description: 'Core vocabulary for the Reflexive Coherence Model.'
+};
 
 // Extract plain text from Portable Text blocks (for search indexing)
 const portableTextToPlain = (blocks?: PortableTextBlock[]): string => {
@@ -52,12 +171,17 @@ const getSearchFields = (concept: GlossaryConcept): string => {
   const whatIs = concept.whatItIs ?? concept.what_is ?? concept.whatIsText ?? '';
   const whatNot = concept.whatItIsNot ?? concept.what_is_not ?? concept.whatNotText ?? '';
   const body = portableTextToPlain(concept.fullDefinition);
+  const normalizeRelatedLabel = (label: string): string =>
+    label.replace(/Reflexive Causal Closure/g, 'Reflexive Causal Coupling');
 
   const related = Array.isArray(concept.relatedConcepts)
-    ? concept.relatedConcepts.map((r: RelatedConcept) => r?.term ?? r?.title ?? r?.name ?? '').join(' ')
+    ? concept.relatedConcepts
+        .map((r: RelatedConcept) => normalizeRelatedLabel(r?.term ?? r?.title ?? r?.name ?? ''))
+        .join(' ')
     : '';
+  const aliases = Array.isArray(concept.aliasSlugs) ? concept.aliasSlugs.join(' ') : '';
 
-  return normalize(`${title} ${short} ${whatIs} ${whatNot} ${body} ${related}`);
+  return normalize(`${title} ${short} ${whatIs} ${whatNot} ${body} ${related} ${aliases}`);
 };
 
 // Build A–Z buckets
@@ -83,58 +207,118 @@ const misc = glossary
   .sort((a, b) => getLabel(a).localeCompare(getLabel(b)));
 
 const initialCount = glossary.length;
+const glossaryBadges = [
+  { label: `${initialCount} entries`, tone: 'border-sky-700/70 text-sky-800 dark:text-sky-300' },
+  { label: 'RCM vocabulary', tone: 'border-violet-700/70 text-violet-800 dark:text-violet-300' },
+  { label: 'A–Z index', tone: 'border-emerald-700/70 text-emerald-800 dark:text-emerald-300' }
+];
 ---
 
 <BaseLayout seo={seo}>
-  <PageTitle
-    eyebrow="language"
-    title="Glossary"
-    intro="Core vocabulary for the Reflexive Coherence Model — concise definitions with explicit boundaries."
-  />
-
-  {/* Search + meta */}
-  <section class="pb-8">
-    <div class="container">
-      <div class="grid gap-4 lg:grid-cols-[1fr_auto] lg:items-end">
+  <div class="bg-slate-50 text-slate-900 transition-colors duration-300 dark:bg-slate-950 dark:text-slate-100">
+    <section class="border-b border-slate-200/80 px-4 py-16 md:py-24 dark:border-slate-900">
+      <div class="mx-auto grid max-w-6xl gap-10 md:grid-cols-2 md:items-center">
         <div>
-          <label
-            for="glossarySearch"
-            class="mb-2 block text-xs font-semibold uppercase tracking-wide text-slate-700 dark:text-white/70"
-          >
-            Search
-          </label>
-
-          <div class="flex items-center gap-2">
-            <input
-              id="glossarySearch"
-              type="text"
-              placeholder="Search concepts (e.g. reflexive structure, RCI, causal closure)…"
-              class="w-full rounded-2xl border border-slate-200 bg-white/60 px-4 py-3 text-sm text-slate-900 shadow-sm outline-none backdrop-blur placeholder:text-slate-400 focus:border-slate-300 dark:border-white/10 dark:bg-white/5 dark:text-white dark:placeholder:text-white/35 dark:focus:border-white/20"
-            />
-            <button
-              id="glossaryClear"
-              type="button"
-              class="hidden rounded-2xl border border-slate-200 bg-white/60 px-4 py-3 text-sm font-semibold text-slate-700 shadow-sm backdrop-blur hover:bg-white dark:border-white/10 dark:bg-white/5 dark:text-white/80 dark:hover:bg-white/10"
-            >
-              Clear
-            </button>
-          </div>
-
-          <p class="mt-2 text-sm text-slate-600 dark:text-white/70">
-            <span id="glossaryCount">{initialCount}</span> entries
-            <span class="text-slate-400 dark:text-white/35"> · </span>
-            grouped A–Z for quick scanning.
+          <p class="mb-4 text-xs font-semibold uppercase tracking-[0.25em] text-sky-700 dark:text-sky-300">
+            language
           </p>
+
+          <h1 class="text-3xl font-semibold leading-tight text-slate-900 dark:text-white md:text-5xl">
+            Glossary
+            <span class="mt-3 block text-xl text-slate-500 dark:text-slate-300 md:text-2xl">
+              controlled vocabulary for reflexive coherence.
+            </span>
+          </h1>
+
+          <p class="mt-5 max-w-2xl text-sm text-slate-600 dark:text-slate-300 md:text-base">
+            Core vocabulary for the Reflexive Coherence Model — concise definitions with explicit boundaries.
+          </p>
+
+          <div class="mt-8 rounded-2xl border border-slate-200 bg-white/80 p-4 shadow-sm backdrop-blur-sm dark:border-slate-800 dark:bg-slate-900/50">
+            <label
+              for="glossarySearch"
+              class="mb-2 block text-xs font-semibold uppercase tracking-[0.2em] text-slate-700 dark:text-slate-300"
+            >
+              Search glossary
+            </label>
+
+            <div class="flex items-center gap-2">
+              <input
+                id="glossarySearch"
+                type="text"
+                placeholder="Search concepts (e.g. reflexive structure, RCI, causal coupling)…"
+                class="w-full rounded-2xl border border-slate-200 bg-white/80 px-4 py-3 text-sm text-slate-900 shadow-sm outline-none transition placeholder:text-slate-400 focus:border-sky-400 focus:ring-2 focus:ring-sky-300/40 dark:border-slate-800 dark:bg-slate-950/60 dark:text-white dark:placeholder:text-slate-500 dark:focus:border-sky-400/70 dark:focus:ring-sky-400/20"
+              />
+              <button
+                id="glossaryClear"
+                type="button"
+                class="hidden rounded-2xl border border-slate-200 bg-white/80 px-4 py-3 text-sm font-semibold text-slate-700 shadow-sm transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-sky-300/50 dark:border-slate-800 dark:bg-slate-900/70 dark:text-slate-200 dark:hover:bg-slate-800 dark:focus:ring-sky-400/30"
+              >
+                Clear
+              </button>
+            </div>
+
+            <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">
+              <span id="glossaryCount">{initialCount}</span> entries
+              <span class="text-slate-400 dark:text-slate-600"> · </span>
+              grouped A–Z for quick scanning.
+            </p>
+          </div>
         </div>
 
-        {/* Mobile A–Z chips */}
-        <div class="lg:hidden">
-          <p class="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-700 dark:text-white/70">Jump</p>
+        <div class="relative">
+          <div class="pointer-events-none absolute inset-0 hidden scale-[1.2] rounded-[48px] bg-gradient-to-tr from-sky-500/20 via-purple-500/10 to-transparent blur-3xl dark:block"></div>
+
+          <div class="relative rounded-3xl border border-slate-200 bg-white/80 p-6 shadow-lg backdrop-blur-sm dark:border-slate-800 dark:bg-slate-900/60 md:p-8">
+            <div class="mb-4 flex items-center justify-between text-xs tracking-[0.25em] text-slate-500 dark:text-slate-400">
+              <span>Glossary snapshot</span>
+              <span class="h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_12px_rgba(16,185,129,0.8)] dark:bg-emerald-400"></span>
+            </div>
+
+            <div class="space-y-4 text-sm text-slate-700 dark:text-slate-200">
+              <div class="flex flex-wrap gap-2">
+                {glossaryBadges.map((badge) => (
+                  <span class={`inline-flex items-center rounded-full border bg-white/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] shadow-sm dark:bg-white/5 ${badge.tone}`}>
+                    {badge.label}
+                  </span>
+                ))}
+              </div>
+
+              <div class="rounded-2xl border border-slate-200 bg-white/90 p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900/60">
+                <p class="text-xs text-slate-600 dark:text-slate-300">
+                  A controlled vocabulary for the RCM–TEH–PRS-AIS framework, with concise definitions and explicit non-claims.
+                </p>
+              </div>
+
+              <div class="grid gap-3 text-xs text-slate-600 dark:text-slate-400 sm:grid-cols-3">
+                <div class="rounded-2xl border border-slate-200/80 bg-white/70 p-3 dark:border-slate-800 dark:bg-slate-950/40">
+                  <span class="block font-semibold text-slate-900 dark:text-white">Definitions</span>
+                  compact and scoped
+                </div>
+                <div class="rounded-2xl border border-slate-200/80 bg-white/70 p-3 dark:border-slate-800 dark:bg-slate-950/40">
+                  <span class="block font-semibold text-slate-900 dark:text-white">Aliases</span>
+                  backward-aware
+                </div>
+                <div class="rounded-2xl border border-slate-200/80 bg-white/70 p-3 dark:border-slate-800 dark:bg-slate-950/40">
+                  <span class="block font-semibold text-slate-900 dark:text-white">Links</span>
+                  copyable anchors
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="px-4 pb-16 pt-10">
+      <div class="mx-auto max-w-6xl lg:grid lg:grid-cols-[240px_1fr] lg:gap-12">
+        <div class="pb-8 lg:hidden">
+          <p class="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-slate-700 dark:text-slate-300">Jump</p>
           <div class="flex flex-wrap gap-2">
             {letters.map((L) => (
               <a
                 href={`#gl-${L}`}
-                class="rounded-full border border-slate-200 bg-white/50 px-3 py-1 text-xs font-medium text-slate-700 shadow-sm hover:bg-white dark:border-white/10 dark:bg-white/5 dark:text-white/80 dark:hover:bg-white/10"
+                class="rounded-full border border-slate-200 bg-white/80 px-3 py-1 text-xs font-medium text-slate-700 shadow-sm transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-sky-300/50 dark:border-slate-800 dark:bg-slate-900/50 dark:text-slate-200 dark:hover:bg-slate-800 dark:focus:ring-sky-400/30"
               >
                 {L}
               </a>
@@ -142,33 +326,25 @@ const initialCount = glossary.length;
             {misc.length ? (
               <a
                 href="#gl-misc"
-                class="rounded-full border border-slate-200 bg-white/50 px-3 py-1 text-xs font-medium text-slate-700 shadow-sm hover:bg-white dark:border-white/10 dark:bg-white/5 dark:text-white/80 dark:hover:bg-white/10"
+                class="rounded-full border border-slate-200 bg-white/80 px-3 py-1 text-xs font-medium text-slate-700 shadow-sm transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-sky-300/50 dark:border-slate-800 dark:bg-slate-900/50 dark:text-slate-200 dark:hover:bg-slate-800 dark:focus:ring-sky-400/30"
               >
                 #
               </a>
             ) : null}
           </div>
         </div>
-      </div>
-    </div>
-  </section>
 
-  {/* Desktop layout: sticky A–Z + content */}
-  <section class="pb-20">
-    <div class="container">
-      <div class="grid gap-10 lg:grid-cols-[240px_1fr]">
-        {/* Sticky A–Z index (desktop only) */}
         <aside class="hidden lg:block">
           <div class="sticky top-24">
-            <div class="rounded-2xl border border-slate-200 bg-white/60 p-4 shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/5">
-              <p class="text-xs font-semibold uppercase tracking-wide text-slate-700 dark:text-white/70">
+            <div class="rounded-2xl border border-slate-200 bg-white/80 p-4 shadow-sm backdrop-blur-sm dark:border-slate-800 dark:bg-slate-900/50">
+              <p class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-700 dark:text-slate-300">
                 A–Z index
               </p>
               <div class="mt-3 grid grid-cols-6 gap-2">
                 {letters.map((L) => (
                   <a
                     href={`#gl-${L}`}
-                    class="flex h-9 items-center justify-center rounded-xl border border-slate-200 bg-white/60 text-xs font-semibold text-slate-700 shadow-sm hover:bg-white dark:border-white/10 dark:bg-white/5 dark:text-white/75 dark:hover:bg-white/10"
+                    class="flex h-9 items-center justify-center rounded-xl border border-slate-200 bg-white/80 text-xs font-semibold text-slate-700 shadow-sm transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-sky-300/50 dark:border-slate-800 dark:bg-slate-950/40 dark:text-slate-300 dark:hover:bg-slate-800 dark:focus:ring-sky-400/30"
                     aria-label={`Jump to ${L}`}
                   >
                     {L}
@@ -177,7 +353,7 @@ const initialCount = glossary.length;
                 {misc.length ? (
                   <a
                     href="#gl-misc"
-                    class="col-span-6 mt-2 flex h-9 items-center justify-center rounded-xl border border-slate-200 bg-white/60 text-xs font-semibold text-slate-700 shadow-sm hover:bg-white dark:border-white/10 dark:bg-white/5 dark:text-white/75 dark:hover:bg-white/10"
+                    class="col-span-6 mt-2 flex h-9 items-center justify-center rounded-xl border border-slate-200 bg-white/80 text-xs font-semibold text-slate-700 shadow-sm transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-sky-300/50 dark:border-slate-800 dark:bg-slate-950/40 dark:text-slate-300 dark:hover:bg-slate-800 dark:focus:ring-sky-400/30"
                     aria-label="Jump to misc"
                   >
                     #
@@ -188,8 +364,7 @@ const initialCount = glossary.length;
           </div>
         </aside>
 
-        {/* Content */}
-        <div id="glossaryRoot" class="space-y-10">
+        <div id="glossaryRoot" class="space-y-12 lg:space-y-14">
           {glossary?.length ? (
             <>
               {buckets.map((b) =>
@@ -207,6 +382,9 @@ const initialCount = glossary.length;
                     <div class="grid gap-6 md:grid-cols-2">
                       {b.items.map((concept) => (
                         <div class="gl-item" data-search={getSearchFields(concept)}>
+                          {concept.aliasSlugs?.map((alias) => (
+                            <span id={alias} class="sr-only" aria-hidden="true"></span>
+                          ))}
                           <GlossaryItem concept={concept} />
                         </div>
                       ))}
@@ -227,6 +405,9 @@ const initialCount = glossary.length;
                   <div class="grid gap-6 md:grid-cols-2">
                     {misc.map((concept) => (
                       <div class="gl-item" data-search={getSearchFields(concept)}>
+                        {concept.aliasSlugs?.map((alias) => (
+                          <span id={alias} class="sr-only" aria-hidden="true"></span>
+                        ))}
                         <GlossaryItem concept={concept} />
                       </div>
                     ))}
@@ -235,14 +416,14 @@ const initialCount = glossary.length;
               ) : null}
             </>
           ) : (
-            <div class="rounded-2xl border border-slate-200 bg-white/60 p-6 text-slate-600 shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/5 dark:text-white/70">
+            <div class="rounded-2xl border border-slate-200 bg-white/80 p-6 text-slate-600 shadow-sm backdrop-blur-sm dark:border-slate-800 dark:bg-slate-900/50 dark:text-slate-300">
               Glossary entries are being curated.
             </div>
           )}
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
 
   {/* Client-side filter (tiny, no deps) */}
   <script is:inline>

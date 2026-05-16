@@ -1,5 +1,6 @@
 ---
 import type { Concept } from '../lib/types';
+import type { PortableTextBlock } from '@portabletext/types';
 import RichTextRenderer from './RichTextRenderer';
 
 type GlossaryConcept = Concept & {
@@ -21,10 +22,33 @@ const whatItIs = concept.whatItIs ?? concept.what_is ?? concept.whatIsText ?? ''
 const whatItIsNot = concept.whatItIsNot ?? concept.what_is_not ?? concept.whatNotText ?? '';
 
 const related = concept.relatedConcepts ?? [];
+
+type PortableChild = { text?: string };
+
+const blockToPlain = (block: PortableTextBlock): string => {
+  const children = (block as PortableTextBlock & { children?: PortableChild[] }).children;
+  return Array.isArray(children) ? children.map((child) => child?.text ?? '').join('').trim() : '';
+};
+
+const isRelatedOnlyBlock = (block: PortableTextBlock): boolean => {
+  const text = blockToPlain(block);
+  return /^related(?:\s+\(suggested\))?\s*:/i.test(text);
+};
+
+const visibleFullDefinition = Array.isArray(concept.fullDefinition)
+  ? concept.fullDefinition.filter((block) => !isRelatedOnlyBlock(block))
+  : undefined;
+
+const normalizeRelatedLabel = (label: string): string =>
+  label.replace(/Reflexive Causal Closure/g, 'Reflexive Causal Coupling');
+
+const relatedLabels = related
+  .map((r) => normalizeRelatedLabel(r.term ?? r.title ?? r.name ?? ''))
+  .filter(Boolean);
 ---
 
 <article
-  class="rounded-2xl border border-slate-200 bg-white/60 p-6 shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/5"
+  class="rounded-2xl border border-slate-200 bg-white/80 p-6 shadow-sm backdrop-blur-sm dark:border-slate-800 dark:bg-slate-900/40"
   id={slug}
 >
   <div class="flex items-start justify-between gap-4">
@@ -38,7 +62,7 @@ const related = concept.relatedConcepts ?? [];
     <button
       type="button"
       data-copy-link={slug}
-      class="shrink-0 rounded-full border border-slate-200 bg-white/70 px-3 py-1 text-xs font-semibold text-slate-700 hover:bg-white dark:border-white/10 dark:bg-white/10 dark:text-white/80 dark:hover:bg-white/15"
+      class="shrink-0 rounded-full border border-slate-200 bg-white/80 px-3 py-1 text-xs font-semibold text-slate-700 transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-sky-300/50 dark:border-slate-800 dark:bg-slate-900/60 dark:text-slate-200 dark:hover:bg-slate-800 dark:focus:ring-sky-400/30"
       aria-label={`Copy link to ${term}`}
       title="Copy link"
     >
@@ -47,23 +71,23 @@ const related = concept.relatedConcepts ?? [];
   </div>
 
   {/* Optional rich content (kept) */}
-  {concept.fullDefinition && (
+  {visibleFullDefinition?.length ? (
     <div class="prose prose-slate mt-4 max-w-none dark:prose-invert">
-      <RichTextRenderer value={concept.fullDefinition} />
+      <RichTextRenderer value={visibleFullDefinition} />
     </div>
-  )}
+  ) : null}
 
   {(whatItIs || whatItIsNot) && (
     <div class="mt-4 grid gap-3">
       {whatItIs && (
-        <div class="rounded-2xl border border-slate-200 bg-white/70 p-4 text-sm dark:border-white/10 dark:bg-white/5">
+        <div class="rounded-2xl border border-slate-200 bg-white/90 p-4 text-sm dark:border-slate-800 dark:bg-slate-900/60">
           <p class="text-xs font-semibold uppercase tracking-wide text-slate-700 dark:text-white/70">What it is</p>
           <p class="mt-2 text-slate-700 dark:text-white/80">{whatItIs}</p>
         </div>
       )}
 
       {whatItIsNot && (
-        <div class="rounded-2xl border border-slate-200 bg-white/70 p-4 text-sm dark:border-white/10 dark:bg-white/5">
+        <div class="rounded-2xl border border-slate-200 bg-white/90 p-4 text-sm dark:border-slate-800 dark:bg-slate-900/60">
           <p class="text-xs font-semibold uppercase tracking-wide text-slate-700 dark:text-white/70">What it is not</p>
           <p class="mt-2 text-slate-700 dark:text-white/80">{whatItIsNot}</p>
         </div>
@@ -71,9 +95,9 @@ const related = concept.relatedConcepts ?? [];
     </div>
   )}
 
-  {related?.length ? (
+  {relatedLabels.length ? (
     <p class="pt-4 text-sm text-slate-600 dark:text-white/70">
-      Related: {related.map((r) => r.term ?? r.title ?? r.name ?? '').filter(Boolean).join(', ')}
+      Related: {relatedLabels.join(', ')}
     </p>
   ) : null}
 </article>

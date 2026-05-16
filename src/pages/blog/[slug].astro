@@ -1,6 +1,5 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import PageTitle from '../../components/PageTitle.astro';
 import Tag from '../../components/Tag.astro';
 import RichTextRenderer from '../../components/RichTextRenderer';
 import { getBlogPosts, getBlogPostBySlug } from '../../lib/sanityQueries';
@@ -26,72 +25,180 @@ const seo = {
 const publishedLabel = post.publishedAt
   ? new Date(post.publishedAt).toLocaleDateString(undefined, { dateStyle: 'medium' })
   : null;
+
+const snapshotBadges = (post.tags ?? []).slice(0, 3);
+const snapshotFallbackBadge = snapshotBadges.length ? null : 'Context & Clarification';
 ---
 <BaseLayout seo={seo}>
-  <PageTitle
-    eyebrow="article"
-    title={post.title}
-    intro={publishedLabel ? `Published ${publishedLabel}` : 'Article'}
-  />
+  <div class="bg-slate-50 text-slate-900 transition-colors duration-300 dark:bg-slate-950 dark:text-slate-100">
+    <section class="border-b border-slate-200/80 px-4 py-16 md:py-24 dark:border-slate-900">
+      <div class="mx-auto grid max-w-6xl gap-10 md:grid-cols-[minmax(0,1.1fr)_minmax(320px,0.9fr)] md:items-center">
+        <div>
+          <p class="mb-4 text-xs font-semibold uppercase tracking-[0.25em] text-sky-700 dark:text-sky-300">
+            article
+          </p>
 
-  <section class="pb-20">
-    <div class="container">
-      <div class="mb-6 flex flex-wrap items-center gap-3 text-sm text-slate-600 dark:text-white/70">
-        <a
-          href="/blog"
-          class="underline decoration-slate-300 underline-offset-2 hover:decoration-slate-500 dark:decoration-white/20 dark:hover:decoration-white/40"
-        >
-          ← Back to Articles
-        </a>
-        {post.excerpt ? (
-          <span class="text-slate-400 dark:text-white/35">·</span>
-        ) : null}
-        {post.excerpt ? (
-          <span class="max-w-2xl text-slate-600 dark:text-white/70">
-            {post.excerpt}
-          </span>
-        ) : null}
-      </div>
+          <h1 class="text-3xl font-semibold leading-tight text-slate-900 dark:text-white md:text-5xl">
+            {post.title}
+          </h1>
 
-      {post.tags?.length ? (
-        <div class="mb-8 flex flex-wrap gap-2">
-          {post.tags.map((tag) => (
-            <Tag label={tag} />
-          ))}
-        </div>
-      ) : null}
+          {publishedLabel ? (
+            <p class="mt-5 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">
+              Published {publishedLabel}
+            </p>
+          ) : null}
 
-      <article class="max-w-3xl">
-        {post.body ? (
-          <div class="prose prose-slate dark:prose-invert">
-            <RichTextRenderer value={post.body} />
+          {post.excerpt ? (
+            <p class="mt-5 max-w-2xl text-sm leading-7 text-slate-600 dark:text-slate-300 md:text-base">
+              {post.excerpt}
+            </p>
+          ) : null}
+
+          {post.tags?.length ? (
+            <div class="mt-7 flex flex-wrap gap-2">
+              {post.tags.map((tag) => (
+                <Tag label={tag} />
+              ))}
+            </div>
+          ) : null}
+
+          <div class="mt-8">
+            <a
+              href="/blog"
+              class="inline-flex items-center rounded-full border border-slate-200 bg-white/80 px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-sky-300/50 dark:border-slate-800 dark:bg-slate-900/60 dark:text-slate-200 dark:hover:bg-slate-800 dark:focus:ring-sky-400/30"
+            >
+              ← Back to Articles
+            </a>
           </div>
-        ) : (
-          <p class="text-slate-600 dark:text-white/70">Full text coming soon.</p>
-        )}
-      </article>
+        </div>
 
-      {/* Home-only lab notes reminder */}
-      <div class="mt-14 max-w-3xl rounded-3xl border border-slate-200 bg-white/50 p-6 shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/5">
-        <h2 class="text-base font-semibold text-slate-900 dark:text-white">
-          Lab notes
-        </h2>
+        <div class="relative">
+          <div class="pointer-events-none absolute inset-0 hidden scale-[1.2] rounded-[48px] bg-gradient-to-tr from-sky-500/20 via-purple-500/10 to-transparent blur-3xl dark:block"></div>
 
-        <p class="mt-1 text-sm text-slate-600 dark:text-white/70">
-          Field records and evolving reflections connected to this line of inquiry.
-        </p>
+          <aside class="relative rounded-3xl border border-slate-200 bg-white/80 p-6 shadow-lg backdrop-blur-sm dark:border-slate-800 dark:bg-slate-900/60 md:p-8" aria-label="Article snapshot">
+            <div class="mb-4 flex items-center justify-between text-xs tracking-[0.25em] text-slate-500 dark:text-slate-400">
+              <span>Article snapshot</span>
+              <span class="h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_12px_rgba(16,185,129,0.8)] dark:bg-emerald-400"></span>
+            </div>
 
-        <div class="mt-4 flex flex-wrap gap-4 text-xs font-semibold">
-          <a href="/notes" class="link-card">
-            Open Notes →
-          </a>
+            <div class="space-y-4 text-sm text-slate-700 dark:text-slate-200">
+              <div class="flex flex-wrap gap-2">
+                {snapshotBadges.map((tag) => (
+                  <span class="inline-flex items-center rounded-full border border-sky-700/70 bg-white/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-sky-800 shadow-sm dark:bg-white/5 dark:text-sky-300">
+                    {tag}
+                  </span>
+                ))}
+                {snapshotFallbackBadge ? (
+                  <span class="inline-flex items-center rounded-full border border-sky-700/70 bg-white/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-sky-800 shadow-sm dark:bg-white/5 dark:text-sky-300">
+                    {snapshotFallbackBadge}
+                  </span>
+                ) : null}
+              </div>
 
-          <a href="/model" class="link-card">
-            Back to Model →
-          </a>
+              {post.excerpt ? (
+                <div class="rounded-2xl border border-slate-200 bg-white/90 p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900/60">
+                  <p class="text-xs leading-6 text-slate-600 dark:text-slate-300">
+                    {post.excerpt}
+                  </p>
+                </div>
+              ) : null}
+
+              <dl class="grid gap-3 text-xs text-slate-600 dark:text-slate-400 sm:grid-cols-2">
+                {publishedLabel ? (
+                  <div class="rounded-2xl border border-slate-200/80 bg-white/70 p-3 dark:border-slate-800 dark:bg-slate-950/40">
+                    <dt class="font-semibold text-slate-900 dark:text-white">Published</dt>
+                    <dd>{publishedLabel}</dd>
+                  </div>
+                ) : null}
+                <div class="rounded-2xl border border-slate-200/80 bg-white/70 p-3 dark:border-slate-800 dark:bg-slate-950/40">
+                  <dt class="font-semibold text-slate-900 dark:text-white">Reading type</dt>
+                  <dd>Context & Clarification</dd>
+                </div>
+                {post.author?.name ? (
+                  <div class="rounded-2xl border border-slate-200/80 bg-white/70 p-3 dark:border-slate-800 dark:bg-slate-950/40 sm:col-span-2">
+                    <dt class="font-semibold text-slate-900 dark:text-white">Author</dt>
+                    <dd class="mt-2 flex items-center gap-3">
+                      {post.author.avatar?.url ? (
+                        <img
+                          src={post.author.avatar.url}
+                          alt={post.author.avatar.alt ?? `${post.author.name} portrait`}
+                          class="h-10 w-10 rounded-full border border-slate-200 object-cover dark:border-slate-800"
+                          loading="lazy"
+                        />
+                      ) : null}
+                      <span>{post.author.name}</span>
+                    </dd>
+                  </div>
+                ) : null}
+              </dl>
+            </div>
+          </aside>
         </div>
       </div>
+    </section>
 
-    </div>
-  </section>
+    <section class="px-4 pb-16 pt-10">
+      <div class="mx-auto max-w-6xl">
+        {post.author?.bio?.length ? (
+          <aside class="mb-10 max-w-3xl rounded-2xl border border-slate-200 bg-white/80 p-5 shadow-sm backdrop-blur-sm dark:border-slate-800 dark:bg-slate-900/50" aria-label="Author">
+            <p class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-700 dark:text-slate-300">
+              Author
+            </p>
+            <div class="mt-3 flex gap-4">
+              {post.author.avatar?.url ? (
+                <img
+                  src={post.author.avatar.url}
+                  alt={post.author.avatar.alt ?? `${post.author.name} portrait`}
+                  class="h-12 w-12 shrink-0 rounded-full border border-slate-200 object-cover dark:border-slate-800"
+                  loading="lazy"
+                />
+              ) : null}
+              <div>
+                <h2 class="text-base font-semibold text-slate-900 dark:text-white">{post.author.name}</h2>
+                <div class="prose prose-slate mt-2 max-w-none text-sm dark:prose-invert">
+                  <RichTextRenderer value={post.author.bio} />
+                </div>
+              </div>
+            </div>
+          </aside>
+        ) : null}
+
+        <article class="max-w-3xl">
+          {post.body ? (
+            <div class="prose prose-slate max-w-none prose-headings:scroll-mt-28 prose-headings:text-slate-900 prose-p:leading-8 prose-a:font-semibold prose-a:text-sky-700 prose-a:underline prose-a:decoration-sky-300 prose-a:underline-offset-4 hover:prose-a:decoration-sky-500 dark:prose-invert dark:prose-headings:text-white dark:prose-a:text-sky-300 dark:prose-a:decoration-sky-500/40">
+              <RichTextRenderer value={post.body} />
+            </div>
+          ) : (
+            <p class="rounded-2xl border border-slate-200 bg-white/80 p-6 text-slate-600 shadow-sm backdrop-blur-sm dark:border-slate-800 dark:bg-slate-900/50 dark:text-slate-300">
+              Full text coming soon.
+            </p>
+          )}
+        </article>
+
+        <nav class="mt-14 max-w-3xl rounded-3xl border border-slate-200 bg-white/80 p-6 shadow-sm backdrop-blur-sm dark:border-slate-800 dark:bg-slate-900/50" aria-label="Continue reading">
+          <h2 class="text-base font-semibold text-slate-900 dark:text-white">
+            Continue reading
+          </h2>
+
+          <p class="mt-1 text-sm text-slate-600 dark:text-slate-300">
+            Follow the article back into the broader CoherenceMind research map.
+          </p>
+
+          <div class="mt-4 flex flex-wrap gap-3 text-xs font-semibold">
+            <a href="/blog" class="link-card">
+              Back to Articles →
+            </a>
+
+            <a href="/model" class="link-card">
+              Explore the Model →
+            </a>
+
+            <a href="/papers" class="link-card">
+              Papers & Resources →
+            </a>
+          </div>
+        </nav>
+      </div>
+    </section>
+  </div>
 </BaseLayout>

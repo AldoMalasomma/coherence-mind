@@ -11,7 +11,7 @@ const tagsBlob = normalize(tags.join('|'));
 ---
 
 <article
-  class="blog-card space-y-3 rounded-2xl border border-slate-200 bg-white/60 p-6 shadow-sm backdrop-blur transition hover:-translate-y-0.5 hover:bg-white dark:border-white/10 dark:bg-white/5 dark:hover:bg-white/10"
+  class="blog-card space-y-3 rounded-2xl border border-slate-200 bg-white/80 p-6 shadow-sm backdrop-blur-sm transition hover:-translate-y-0.5 hover:bg-white dark:border-slate-800 dark:bg-slate-900/40 dark:hover:bg-slate-900/70"
   data-search={searchBlob}
   data-tags={tagsBlob}
 >
@@ -20,7 +20,7 @@ const tagsBlob = normalize(tags.join('|'));
   </p>
 
   <h3 class="text-xl font-semibold text-slate-900 dark:text-white">
-    <a class="hover:text-slate-900 dark:hover:text-white" href={`/blog/${post.slug}`}>
+    <a class="rounded-sm transition hover:text-sky-700 focus:outline-none focus:ring-2 focus:ring-sky-300/50 dark:hover:text-sky-300 dark:focus:ring-sky-400/30" href={`/blog/${post.slug}`}>
       {post.title}
     </a>
   </h3>
@@ -32,7 +32,7 @@ const tagsBlob = normalize(tags.join('|'));
   {post.tags?.length ? (
     <div class="flex flex-wrap gap-2 pt-1">
       {post.tags.map((tag) => (
-        <span class="rounded-full border border-slate-200 bg-white/70 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-600 dark:border-white/10 dark:bg-white/10 dark:text-white/70">
+        <span class="rounded-full border border-slate-200 bg-white/80 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-600 dark:border-slate-800 dark:bg-slate-950/40 dark:text-slate-300">
           {tag}
         </span>
       ))}

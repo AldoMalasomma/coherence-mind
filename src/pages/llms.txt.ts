@@ -60,7 +60,7 @@ export const GET: APIRoute = async () => {
     bullet(
       'Papers & Preprints',
       toUrl('/papers'),
-      'Stable reference page with Zenodo DOIs and downloadable PDFs for citation.'
+      'Stable reference page with the current Zenodo DOI records for citation.'
     ),
     bullet(
       'FAQ',
@@ -71,23 +71,18 @@ export const GET: APIRoute = async () => {
     '## Citation sources',
     bullet(
       'The Reflexive Coherence Model: A Physico-Informational Framework for Consciousness',
-      'https://doi.org/10.5281/zenodo.17342603',
-      'Primary citable preprint and archival record.'
+      'https://doi.org/10.5281/zenodo.20106158',
+      'Primary RCM v1.2 citable preprint and archival record.'
     ),
     bullet(
       'The Expansion Hypothesis: Dynamical Regimes of Reflexive Coherence',
-      'https://doi.org/10.5281/zenodo.18045464',
-      'Follow-up preprint extending the model.'
+      'https://doi.org/10.5281/zenodo.20157592',
+      'TEH v1.2 citable preprint and temporal-dynamical framework layer.'
     ),
     bullet(
-      'RCM v1.1 PDF',
-      toUrl('/papers/rcm-v1.1.pdf'),
-      'Direct PDF copy of the primary paper for offline reading and citation support.'
-    ),
-    bullet(
-      'Expansion Hypothesis PDF',
-      toUrl('/papers/teh-v1.1.pdf'),
-      'Direct PDF copy of the expansion paper.'
+      'Proto-Reflexive States in Artificial Systems',
+      'https://doi.org/10.5281/zenodo.20201726',
+      'PRS-AIS citable record for artificial-system interpretation.'
     ),
     '',
     '## Policies',
