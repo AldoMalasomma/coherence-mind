@@ -2,29 +2,29 @@
 const { siteTitle = 'CoherenceMind' } = Astro.props;
 const renderedYear = new Date().getFullYear();
 ---
-<footer class="border-t border-white/5 bg-ink/90">
-  <div class="container flex flex-col gap-6 py-10 text-sm text-white/70">
+<footer class="border-t border-accent/20 bg-ink">
+  <div class="container flex flex-col gap-6 py-10 text-sm text-paper/70">
 
     {/* Identity & scope */}
     <div class="max-w-2xl space-y-2">
-      <p class="text-white/80">
+      <p class="font-display text-xl text-paper">
         © <span data-current-year>{renderedYear}</span> {siteTitle}
       </p>
 
-      <p class="text-white/60 leading-relaxed">
+      <p class="text-paper/60 leading-relaxed">
         An independent research project dedicated to the Reflexive Coherence Model
         and the structural conditions under which reflexive consciousness may emerge.
       </p>
 
       {/* Accessibility micro-statement */}
-      <p class="text-xs text-white/65 leading-relaxed">
+      <p class="text-xs text-paper/65 leading-relaxed">
         Accessibility: designed to align with the European Accessibility Act (Directive (EU) 2019/882) and WCAG 2.1 AA.
-        <a class="underline underline-offset-2 hover:text-white" href="/accessibility">
+        <a class="underline decoration-accent/60 underline-offset-2 hover:text-accentMuted" href="/accessibility">
           Read the Accessibility Statement
         </a>.
       </p>
 
-      <p class="text-xs text-white/65 leading-relaxed">
+      <p class="text-xs text-paper/65 leading-relaxed">
         Formal papers are archived on Zenodo; the license shown on each Zenodo record is authoritative.
         Unless otherwise stated, website content is licensed under CC BY-NC 4.0.
         Lab notes and unpublished research fragments are not licensed for reuse.
@@ -32,19 +32,19 @@ const renderedYear = new Date().getFullYear();
     </div>
 
     {/* Links */}
-    <div class="flex flex-wrap items-center gap-4 text-xs text-white/60">
-      <a class="hover:text-white" href="/privacy">Privacy</a>
+    <div class="flex flex-wrap items-center gap-4 text-xs text-paper/60">
+      <a class="hover:text-accentMuted" href="/privacy">Privacy</a>
       <button
         type="button"
-        class="bg-transparent p-0 font-[inherit] text-inherit hover:text-white"
+        class="bg-transparent p-0 font-[inherit] text-inherit hover:text-accentMuted"
         data-open-cookie-banner
       >
         Cookie preferences
       </button>
-      <a class="hover:text-white" href="/imprint">Imprint</a>
-      <a class="hover:text-white" href="/accessibility">Accessibility</a>
+      <a class="hover:text-accentMuted" href="/imprint">Imprint</a>
+      <a class="hover:text-accentMuted" href="/accessibility">Accessibility</a>
 
-      <span class="text-white/30">·</span>
+      <span class="text-paper/30">·</span>
 
       <span>
         Site by
@@ -52,13 +52,13 @@ const renderedYear = new Date().getFullYear();
           href="https://www.copycodeai.online/"
           target="_blank"
           rel="noopener noreferrer"
-          class="underline underline-offset-2 hover:text-white"
+          class="underline decoration-accent/60 underline-offset-2 hover:text-accentMuted"
         >
           CopyCodeAI
         </a>
       </span>
 
-      <span class="text-white/30">·</span>
+      <span class="text-paper/30">·</span>
 
       <span>
         Built with Astro × Sanity

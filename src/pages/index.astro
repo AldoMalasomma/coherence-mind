@@ -22,19 +22,19 @@ const reflexiveLayers = [
     initial: 'R',
     title: 'Reflexive structure',
     description: 'The system builds an internal model of its own informational state.',
-    accent: 'border-sky-700/70 text-sky-800 dark:text-sky-300'
+    accent: 'border-teal/60 text-teal dark:text-tealSoft'
   },
   {
     initial: 'C',
     title: 'Coherence dynamics',
     description: 'Integration tends toward stable patterns of internal consistency.',
-    accent: 'border-violet-700/70 text-violet-800 dark:text-violet-300'
+    accent: 'border-accent/70 text-accent dark:text-accentMuted'
   },
   {
     initial: 'E',
     title: 'Expansion hypothesis',
     description: 'Stable systems expand their reflexive scope when equilibrium holds.',
-    accent: 'border-emerald-700/70 text-emerald-800 dark:text-emerald-300'
+    accent: 'border-tealSoft/70 text-teal dark:text-tealSoft'
   }
 ];
 
@@ -46,7 +46,7 @@ const frameworkCards = [
       'The core framework: how informational systems form self-linked structures, stabilise coherence, and become available to analysis without assuming a biological substrate.',
     href: '/model',
     cta: 'Open model',
-    accent: 'from-sky-500/70 via-cyan-400/50 to-slate-300/40'
+    accent: 'from-teal/80 via-tealSoft/60 to-accent/45'
   },
   {
     label: 'TEH',
@@ -55,7 +55,7 @@ const frameworkCards = [
       'An extension focused on expansion, contraction, temporal depth, and how coherent self-models move through state space over time.',
     href: '/model/expansion-hypothesis',
     cta: 'Open hypothesis',
-    accent: 'from-emerald-500/70 via-teal-400/50 to-slate-300/40'
+    accent: 'from-accent/80 via-accentMuted/55 to-tealSoft/50'
   },
   {
     label: 'PRS-AIS',
@@ -64,7 +64,7 @@ const frameworkCards = [
       'A research direction for identifying early reflexive regimes in artificial systems before full model-level claims are warranted.',
     href: '/model/proto-reflexive-states',
     cta: 'Open PRS-AIS page',
-    accent: 'from-indigo-500/70 via-sky-400/50 to-slate-300/40'
+    accent: 'from-ink/80 via-teal/65 to-tealSoft/45'
   }
 ];
 
@@ -188,32 +188,35 @@ const formatDate = (value?: string) => {
 };
 ---
 <BaseLayout seo={seo}>
-  <div class="bg-slate-50 text-slate-900 transition-colors duration-300 dark:bg-slate-950 dark:text-slate-100">
+  <div class="bg-paper text-ink transition-colors duration-300 dark:bg-ink dark:text-paper">
     <section
       id="overview"
-      class="relative isolate overflow-hidden border-b border-slate-200/80 px-4 py-9 md:py-10 lg:py-12 dark:border-slate-900"
+      class="relative isolate overflow-hidden border-b border-ink/10 px-4 py-10 md:py-12 lg:py-14 dark:border-white/10"
     >
-      <div class="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_18%_20%,rgba(14,116,144,0.12),transparent_34%),radial-gradient(circle_at_82%_28%,rgba(16,185,129,0.09),transparent_30%),linear-gradient(180deg,rgba(248,250,252,0.98),rgba(241,245,249,0.9))] dark:bg-[radial-gradient(circle_at_18%_20%,rgba(56,189,248,0.16),transparent_34%),radial-gradient(circle_at_82%_28%,rgba(16,185,129,0.12),transparent_30%),linear-gradient(180deg,rgba(2,6,23,0.98),rgba(15,23,42,0.92))]"></div>
-      <div class="absolute inset-0 -z-10 opacity-[0.22] [background-image:linear-gradient(rgba(15,23,42,0.12)_1px,transparent_1px),linear-gradient(90deg,rgba(15,23,42,0.12)_1px,transparent_1px)] [background-size:44px_44px] dark:opacity-[0.14] dark:[background-image:linear-gradient(rgba(226,232,240,0.28)_1px,transparent_1px),linear-gradient(90deg,rgba(226,232,240,0.28)_1px,transparent_1px)]"></div>
+      <div class="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(248,247,243,0.98),rgba(240,238,232,0.92))] dark:bg-[linear-gradient(180deg,rgba(8,24,32,0.98),rgba(8,32,32,0.94))]"></div>
+      <div class="absolute inset-0 -z-10 opacity-[0.16] [background-image:linear-gradient(rgba(8,24,32,0.14)_1px,transparent_1px),linear-gradient(90deg,rgba(8,24,32,0.12)_1px,transparent_1px)] [background-size:56px_56px] dark:opacity-[0.12] dark:[background-image:linear-gradient(rgba(248,247,243,0.22)_1px,transparent_1px),linear-gradient(90deg,rgba(248,247,243,0.18)_1px,transparent_1px)]"></div>
 
-      <div class="mx-auto grid max-w-6xl gap-7 md:grid-cols-[1.05fr_0.95fr] md:items-center lg:gap-10">
+      <div class="mx-auto grid max-w-6xl gap-8 md:grid-cols-[1.02fr_0.98fr] md:items-center lg:gap-12">
         <div class="home-hero-reveal">
-          <p class="mb-4 text-xs font-semibold uppercase tracking-[0.25em] text-sky-800 dark:text-sky-300">
-            Reflexive Coherence Model
+          <p class="mb-5 max-w-[19rem] text-[0.62rem] font-semibold uppercase leading-5 tracking-[0.18em] text-teal dark:text-tealSoft sm:max-w-none sm:text-xs sm:tracking-[0.28em]">
+            Independent research on consciousness and artificial intelligence
           </p>
-          <h1 class="max-w-[20rem] text-3xl font-semibold leading-tight text-slate-950 dark:text-white sm:max-w-3xl sm:text-4xl md:text-5xl">
-            {heroHeading}
+          <h1 class="font-display max-w-[21rem] text-4xl font-semibold leading-[0.95] text-ink dark:text-paper sm:max-w-3xl sm:text-6xl md:text-7xl">
+            CoherenceMind
           </h1>
-          <p class="mt-4 max-w-[21.5rem] text-base leading-7 text-slate-700 dark:text-slate-300 sm:max-w-2xl md:text-lg">
+          <p class="mt-5 max-w-[35rem] text-lg leading-8 text-ink/75 dark:text-paper/75 md:text-xl">
+            {heroHeading}
+          </p>
+          <p class="mt-5 max-w-[32rem] text-sm leading-7 text-ink/60 dark:text-paper/60">
             {heroSubtitle}
           </p>
 
           {heroDisclaimer && (
-            <div class="mt-6 max-w-2xl border-l-2 border-sky-700/40 pl-4 dark:border-sky-300/40">
-              <p class="text-xs font-semibold uppercase tracking-[0.24em] text-sky-800 dark:text-sky-300">
+            <div class="mt-6 max-w-2xl border-l-2 border-accent/60 pl-4">
+              <p class="text-xs font-semibold uppercase tracking-[0.24em] text-teal dark:text-accentMuted">
                 Epistemic note
               </p>
-              <p class="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-400">
+              <p class="mt-2 text-sm leading-6 text-ink/65 dark:text-paper/65">
                 {heroDisclaimer}
               </p>
             </div>
@@ -221,13 +224,13 @@ const formatDate = (value?: string) => {
           <div class="mt-6 flex flex-wrap gap-3">
             <a
               href="/model"
-              class="inline-flex items-center justify-center rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white shadow-sm transition duration-300 hover:-translate-y-0.5 hover:bg-slate-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-700 dark:bg-sky-400 dark:text-slate-950 dark:hover:bg-sky-300"
+              class="inline-flex items-center justify-center rounded-full bg-ink px-5 py-3 text-sm font-semibold text-paper shadow-depth transition duration-300 hover:-translate-y-0.5 hover:bg-teal focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent dark:bg-accent dark:text-ink dark:hover:bg-accentMuted"
             >
               Explore the model
             </a>
             <a
               href="/papers"
-              class="inline-flex items-center justify-center rounded-full border border-slate-300/90 bg-white/50 px-5 py-3 text-sm font-semibold text-slate-800 shadow-sm backdrop-blur transition duration-300 hover:-translate-y-0.5 hover:border-slate-500 hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-700 dark:border-white/15 dark:bg-white/5 dark:text-slate-100 dark:hover:border-white/35 dark:hover:bg-white/10"
+              class="inline-flex items-center justify-center rounded-full border border-ink/15 bg-paper/60 px-5 py-3 text-sm font-semibold text-ink shadow-sm backdrop-blur transition duration-300 hover:-translate-y-0.5 hover:border-teal hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent dark:border-white/15 dark:bg-white/5 dark:text-paper dark:hover:border-accentMuted dark:hover:bg-white/10"
             >
               Read the papers
             </a>
@@ -235,46 +238,42 @@ const formatDate = (value?: string) => {
         </div>
 
         <div class="home-hero-reveal relative md:delay-150">
-          <div class="pointer-events-none absolute inset-4 rounded-[2rem] bg-sky-500/10 blur-3xl dark:bg-sky-400/10"></div>
-          <div class="home-coherence-map group relative overflow-hidden rounded-3xl border border-slate-200/90 bg-white/75 p-4 shadow-[0_24px_80px_rgba(15,23,42,0.12)] backdrop-blur-md transition duration-500 hover:-translate-y-0.5 hover:border-sky-300/80 hover:shadow-[0_28px_90px_rgba(15,23,42,0.16)] dark:border-white/10 dark:bg-slate-950/55 dark:hover:border-sky-300/40 md:p-5">
-            <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-sky-500/70 to-transparent"></div>
-            <div class="mb-4 flex items-center justify-between gap-4 text-xs tracking-[0.25em] text-slate-500 dark:text-slate-400">
-              <span>Coherence Map</span>
-              <span class="flex items-center gap-2">
-                <span class="home-active-dot h-1.5 w-1.5 rounded-full bg-emerald-500 shadow-[0_0_16px_rgba(16,185,129,0.7)] dark:bg-emerald-400"></span>
+          <div class="pointer-events-none absolute inset-8 rounded-full bg-accent/20 blur-3xl dark:bg-accent/10"></div>
+          <div class="home-coherence-map group relative overflow-hidden rounded-[1.5rem] border border-ink/10 bg-paper/78 p-5 shadow-[0_24px_80px_rgba(8,24,32,0.14)] backdrop-blur-md transition duration-500 hover:-translate-y-0.5 hover:border-teal/40 dark:border-white/10 dark:bg-white/[0.045] md:p-6">
+            <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/70 to-transparent"></div>
+            <div class="mb-5 flex items-center justify-between gap-4 text-xs uppercase tracking-[0.25em] text-ink/45 dark:text-paper/45">
+              <span>Reflexive field</span>
+              <span class="hidden items-center gap-2 sm:flex">
+                <span class="home-active-dot h-1.5 w-1.5 rounded-full bg-accent shadow-[0_0_16px_rgba(217,148,43,0.7)]"></span>
                 Active frame
               </span>
             </div>
 
-            <div class="relative rounded-2xl border border-slate-200/80 bg-slate-50/70 p-3 dark:border-white/10 dark:bg-white/[0.03]">
-              <div class="home-map-line home-map-line-a absolute left-[18%] top-[22%] h-px w-[58%] rotate-12 bg-gradient-to-r from-sky-500/20 via-sky-500/60 to-emerald-500/30"></div>
-              <div class="home-map-line home-map-line-b absolute left-[29%] top-[58%] h-px w-[46%] -rotate-[18deg] bg-gradient-to-r from-emerald-500/20 via-sky-500/50 to-indigo-500/30"></div>
-              <div class="home-map-line home-map-line-c absolute left-[50%] top-[26%] h-[42%] w-px bg-gradient-to-b from-sky-500/20 via-sky-500/50 to-emerald-500/20"></div>
-
-              <div class="home-map-field home-map-field-a absolute left-[12%] top-[18%] h-16 w-16 rounded-full border border-sky-400/50 bg-white/80 shadow-sm dark:bg-slate-900/80"></div>
-              <div class="home-map-field home-map-field-b absolute right-[14%] top-[28%] h-20 w-20 rounded-full border border-emerald-400/50 bg-white/80 shadow-sm dark:bg-slate-900/80"></div>
-              <div class="home-map-field home-map-field-c absolute bottom-[14%] left-[34%] h-24 w-24 rounded-full border border-indigo-400/45 bg-white/80 shadow-sm dark:bg-slate-900/80"></div>
-              <div class="home-map-field home-map-field-d absolute bottom-[18%] right-[18%] h-12 w-12 rounded-full border border-slate-300 bg-white/80 shadow-sm dark:border-white/15 dark:bg-slate-900/80"></div>
+            <div class="relative overflow-hidden rounded-lg border border-ink/10 bg-[#f8f7f3]/70 p-4 dark:border-white/10 dark:bg-ink/40">
+              <div class="home-orbit-stage relative mx-auto mb-5 flex aspect-square max-w-[19rem] items-center justify-center">
+                <img src="/logo-mark.svg" alt="" class="home-orbit-mark h-[74%] w-[74%] opacity-95" loading="eager" />
+                <span class="absolute h-7 w-7 rounded-full bg-accent shadow-[0_0_30px_rgba(217,148,43,0.65)]"></span>
+              </div>
 
               <div class="relative grid gap-2 text-sm">
                 {reflexiveLayers.map((layer, index) => (
                   <div
-                    class="home-map-node flex max-w-[19rem] items-start gap-3 rounded-2xl border border-slate-200 bg-white/85 p-2.5 shadow-sm backdrop-blur dark:border-white/10 dark:bg-slate-950/70"
+                    class="home-map-node flex max-w-[20rem] items-start gap-3 rounded-lg border border-ink/10 bg-white/70 p-3 shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/[0.055]"
                     style={`--node-delay: ${index * 1.75}s`}
                   >
                     <div class={`home-map-node-badge mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border ${layer.accent} text-[10px] font-semibold`}>
                       {layer.initial}
                     </div>
                     <div>
-                      <p class="font-medium text-slate-950 dark:text-slate-100">{layer.title}</p>
-                      <p class="mt-0.5 text-xs leading-4 text-slate-600 dark:text-slate-400">{layer.description}</p>
+                      <p class="font-medium text-ink dark:text-paper">{layer.title}</p>
+                      <p class="mt-0.5 text-xs leading-4 text-ink/60 dark:text-paper/60">{layer.description}</p>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div class="mt-3 grid gap-3 border-t border-slate-200 pt-3 text-xs text-slate-600 dark:border-white/10 dark:text-slate-400 sm:grid-cols-3">
+            <div class="mt-4 grid gap-3 border-t border-ink/10 pt-4 text-xs uppercase tracking-[0.18em] text-ink/55 dark:border-white/10 dark:text-paper/55 sm:grid-cols-3">
               <span>Self-model</span>
               <span>Coherence field</span>
               <span>Temporal expansion</span>
@@ -284,14 +283,14 @@ const formatDate = (value?: string) => {
       </div>
     </section>
 
-    <section id="model" class="border-b border-slate-200/80 bg-white px-4 py-8 md:py-9 dark:border-slate-900 dark:bg-slate-950">
+    <section id="model" class="border-b border-ink/10 bg-[#f8f7f3] px-4 py-9 md:py-11 dark:border-white/10 dark:bg-ink">
       <div class="mx-auto max-w-6xl">
         <div class="mb-8 max-w-3xl home-hero-reveal">
-          <p class="text-xs font-semibold uppercase tracking-[0.24em] text-slate-500 dark:text-slate-500">Research map</p>
-          <h2 class="mt-3 text-2xl font-semibold text-slate-950 dark:text-white md:text-3xl">
+          <p class="text-xs font-semibold uppercase tracking-[0.24em] text-teal dark:text-tealSoft">Research map</p>
+          <h2 class="font-display mt-3 text-3xl font-semibold text-ink dark:text-paper md:text-4xl">
             Three linked lines of inquiry
           </h2>
-          <p class="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-400">
+          <p class="mt-3 text-sm leading-6 text-ink/65 dark:text-paper/65">
             The homepage orients readers across the model, its temporal extension, and the cautious application of reflexive analysis to artificial systems.
           </p>
         </div>
@@ -302,20 +301,20 @@ const formatDate = (value?: string) => {
             return (
               <TagName
                 href={card.href ?? undefined}
-                class="home-framework-card group relative flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-slate-50/80 p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-sky-300 hover:bg-white hover:shadow-[0_18px_50px_rgba(15,23,42,0.10)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-700 dark:border-white/10 dark:bg-white/[0.035] dark:hover:border-sky-300/50 dark:hover:bg-white/[0.06]"
+                class="home-framework-card group relative flex h-full flex-col overflow-hidden rounded-lg border border-ink/10 bg-paper/80 p-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-teal/40 hover:bg-white hover:shadow-[0_18px_50px_rgba(8,24,32,0.10)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent dark:border-white/10 dark:bg-white/[0.04] dark:hover:border-accent/40 dark:hover:bg-white/[0.07]"
               >
                 <div class={`absolute inset-x-0 top-0 h-1 bg-gradient-to-r ${card.accent} opacity-70 transition duration-300 group-hover:opacity-100`}></div>
-                <p class="text-xs font-semibold uppercase tracking-[0.24em] text-sky-800 dark:text-sky-300">
+                <p class="text-xs font-semibold uppercase tracking-[0.24em] text-teal dark:text-tealSoft">
                   {card.label}
                 </p>
-                <h3 class="mt-4 text-lg font-semibold leading-snug text-slate-950 dark:text-white">
+                <h3 class="font-display mt-4 text-2xl font-semibold leading-tight text-ink dark:text-paper">
                   {card.title}
                 </h3>
-                <p class="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-400">
+                <p class="mt-3 text-sm leading-6 text-ink/65 dark:text-paper/65">
                   {card.detail}
                 </p>
                 {card.cta && (
-                  <span class="mt-auto inline-flex pt-5 text-sm font-semibold text-slate-800 transition group-hover:text-sky-700 dark:text-slate-200 dark:group-hover:text-sky-300">
+                  <span class="mt-auto inline-flex pt-5 text-sm font-semibold text-ink transition group-hover:text-teal dark:text-paper dark:group-hover:text-accentMuted">
                     {card.cta} →
                   </span>
                 )}
@@ -329,19 +328,19 @@ const formatDate = (value?: string) => {
     <section class="px-4 pb-12">
       <div class="mx-auto max-w-6xl">
         <div class="space-y-0">
-          <section id="structure" class="border-t border-slate-200/80 py-10 md:py-12 dark:border-slate-900">
+          <section id="structure" class="border-t border-ink/10 py-10 md:py-12 dark:border-white/10">
             <div class="mx-auto grid max-w-6xl gap-10 md:grid-cols-2 md:items-start">
               <div>
-                <h2 class="mb-3 text-xl font-semibold text-slate-900 dark:text-white md:text-2xl">The model, structured</h2>
-                <p class="mb-5 max-w-lg text-sm text-slate-600 dark:text-slate-300">
+                <h2 class="font-display mb-3 text-3xl font-semibold text-ink dark:text-paper md:text-4xl">The model, structured</h2>
+                <p class="mb-5 max-w-lg text-sm leading-6 text-ink/65 dark:text-paper/70">
                   The Reflexive Coherence Model is modular: each part can be explored separately, but together they form a map of how conscious processes arise, stabilise and expand.
                 </p>
-                <p class="text-sm text-slate-500 dark:text-slate-400">
+                <p class="text-sm leading-6 text-ink/55 dark:text-paper/55">
                   From core architecture to the operational index (RCI), the framework stays precise enough for theoretical analysis and open enough to host new hypotheses.
                 </p>
 
                 <div class="mt-6 flex flex-wrap items-center gap-4 text-sm">
-                  <span class="text-slate-500 dark:text-slate-400">Formal paper:</span>
+                  <span class="text-ink/55 dark:text-paper/55">Formal paper:</span>
 
                   <a href="https://doi.org/10.5281/zenodo.20106158" target="_blank" rel="noopener noreferrer" class="link-accent">
                     Read on Zenodo →
@@ -350,31 +349,31 @@ const formatDate = (value?: string) => {
               </div>
               <div class="grid gap-3">
                 {structuralLayers.map((layer) => (
-                  <div class="flex items-center justify-between rounded-xl border border-slate-200 bg-white/80 p-3 text-sm shadow-sm dark:border-slate-800 dark:bg-slate-900/40">
+                  <div class="flex items-center justify-between rounded-lg border border-ink/10 bg-[#f8f7f3]/80 p-4 text-sm shadow-sm dark:border-white/10 dark:bg-white/[0.04]">
                     <div>
-                      <p class="font-medium text-slate-900 dark:text-slate-100">{layer.title}</p>
-                      <p class="text-xs text-slate-600 dark:text-slate-400">{layer.detail}</p>
+                      <p class="font-medium text-ink dark:text-paper">{layer.title}</p>
+                      <p class="text-xs text-ink/60 dark:text-paper/60">{layer.detail}</p>
                     </div>
-                    <span class="text-[10px] uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">{layer.meta}</span>
+                    <span class="text-[10px] uppercase tracking-[0.2em] text-teal dark:text-tealSoft">{layer.meta}</span>
                   </div>
                 ))}
               </div>
             </div>
           </section>
 
-          <section id="ecosystem" class="border-t border-slate-200/80 py-10 md:py-12 dark:border-slate-900">
+          <section id="ecosystem" class="border-t border-ink/10 py-10 md:py-12 dark:border-white/10">
             <div class="mx-auto max-w-6xl">
               <div class="mb-8 max-w-3xl">
-                <h2 class="text-xl font-semibold text-slate-900 dark:text-white md:text-2xl">Explore the ecosystem</h2>
-                <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">
+                <h2 class="font-display text-3xl font-semibold text-ink dark:text-paper md:text-4xl">Explore the ecosystem</h2>
+                <p class="mt-2 text-sm leading-6 text-ink/65 dark:text-paper/65">
                   The RCM is a growing ecosystem of concepts, research materials, and historical traces of its development.
                 </p>
               </div>
               <div class="grid auto-rows-fr gap-5 text-sm sm:grid-cols-2 lg:grid-cols-4">
                 {ecosystemCards.map((card) => (
-                  <div class="flex h-full flex-col rounded-2xl border border-slate-200 bg-white/80 p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900/40">
-                    <h3 class="mb-2 font-medium text-slate-900 dark:text-slate-100">{card.title}</h3>
-                    <p class="mb-3 text-slate-600 dark:text-slate-300">{card.summary}</p>
+                  <div class="flex h-full flex-col rounded-lg border border-ink/10 bg-[#f8f7f3]/80 p-5 shadow-sm dark:border-white/10 dark:bg-white/[0.04]">
+                    <h3 class="font-display mb-2 text-xl font-semibold text-ink dark:text-paper">{card.title}</h3>
+                    <p class="mb-3 text-ink/65 dark:text-paper/65">{card.summary}</p>
                     <a href={card.href} class="link-card mt-auto text-xs">
                       {card.cta}
                     </a>
@@ -384,23 +383,23 @@ const formatDate = (value?: string) => {
             </div>
           </section>
 
-          <section id="notes" class="border-t border-slate-200/80 bg-slate-100/70 py-10 md:py-12 dark:border-slate-900 dark:bg-slate-950">
+          <section id="notes" class="border-t border-ink/10 bg-[#eeeae1]/70 py-10 md:py-12 dark:border-white/10 dark:bg-[#061416]">
             <div class="mx-auto max-w-6xl">
               <div class="mb-6 max-w-3xl">
-                <h2 class="text-xl font-semibold text-slate-900 dark:text-white md:text-2xl">Lab notes & thought fragments</h2>
-                <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">
+                <h2 class="font-display text-3xl font-semibold text-ink dark:text-paper md:text-4xl">Lab notes & thought fragments</h2>
+                <p class="mt-2 text-sm text-ink/65 dark:text-paper/65">
                   Fragments, experiments and reflections that trace the living edge of the model.
                 </p>
               </div>
               <div class="grid gap-5 text-sm md:grid-cols-3">
                 {notePreviews.map((note) => (
-                  <article class="rounded-2xl border border-slate-200 bg-white/90 p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900/60">
-                    <p class="mb-1 text-[10px] uppercase tracking-[0.2em] text-slate-500 dark:text-slate-500">
+                  <article class="rounded-lg border border-ink/10 bg-[#f8f7f3]/90 p-4 shadow-sm dark:border-white/10 dark:bg-white/[0.055]">
+                    <p class="mb-1 text-[10px] uppercase tracking-[0.2em] text-teal dark:text-tealSoft">
                       {note.label}
                       {formatDate(note.date) ? ` · ${formatDate(note.date)}` : ''}
                     </p>
-                    <h3 class="mb-2 font-medium text-slate-900 dark:text-slate-100">{note.title}</h3>
-                    <p class="text-xs text-slate-600 dark:text-slate-300">{note.description}</p>
+                    <h3 class="font-display mb-2 text-xl font-semibold leading-tight text-ink dark:text-paper">{note.title}</h3>
+                    <p class="text-xs leading-5 text-ink/65 dark:text-paper/65">{note.description}</p>
                     <a href={note.href} class="mt-3 inline-block link-card text-xs">
                       {note.cta}
                     </a>
@@ -410,25 +409,25 @@ const formatDate = (value?: string) => {
             </div>
           </section>
 
-          <section id="manifesto" class="border-t border-slate-200/80 py-12 dark:border-slate-900">
+          <section id="manifesto" class="border-t border-ink/10 py-12 dark:border-white/10">
             <div class="mx-auto max-w-3xl text-center">
-              <p class="mb-3 text-xs uppercase tracking-[0.25em] text-slate-500 dark:text-slate-500">Manifesto</p>
-              <h2 class="mb-4 text-2xl font-semibold text-slate-900 dark:text-white md:text-3xl">
+              <p class="mb-3 text-xs uppercase tracking-[0.25em] text-teal dark:text-tealSoft">Manifesto</p>
+              <h2 class="font-display mb-4 text-3xl font-semibold text-ink dark:text-paper md:text-5xl">
                 Consciousness is not a miracle. It is a pattern that insists on seeing itself.
               </h2>
-              <p class="mb-4 text-sm text-slate-600 dark:text-slate-300">
+              <p class="mb-4 text-sm leading-6 text-ink/65 dark:text-paper/70">
                 The Reflexive Coherence Model aims to describe that pattern—rigorously enough to be tested, and openly enough to be expanded by future minds, biological or not.
               </p>
-              <p class="text-xs text-slate-500 dark:text-slate-500">
+              <p class="text-xs text-ink/50 dark:text-paper/50">
                 This site is a snapshot of an ongoing process. The model will change. That is part of the point.
               </p>
             </div>
           </section>
 
           {scopeEpistemicStatus && (
-            <section id="scope" class="border-t border-slate-200/70 px-4 pb-16 pt-12 dark:border-slate-800">
+            <section id="scope" class="border-t border-ink/10 px-4 pb-16 pt-12 dark:border-white/10">
               <div class="mx-auto max-w-3xl">
-                <h2 class="mb-3 text-base font-semibold uppercase tracking-[0.2em] text-slate-700 dark:text-slate-300">
+                <h2 class="mb-3 text-base font-semibold uppercase tracking-[0.2em] text-teal dark:text-tealSoft">
                   Scope & epistemic status
                 </h2>
                 <RichTextRenderer
@@ -462,15 +461,40 @@ const formatDate = (value?: string) => {
     animation-delay: 180ms;
   }
 
+  .home-orbit-stage::before,
+  .home-orbit-stage::after {
+    content: '';
+    position: absolute;
+    border-radius: 9999px;
+    pointer-events: none;
+  }
+
+  .home-orbit-stage::before {
+    inset: 15%;
+    border: 1px solid rgba(47, 119, 120, 0.16);
+    box-shadow: inset 0 0 32px rgba(47, 119, 120, 0.08);
+  }
+
+  .home-orbit-stage::after {
+    inset: 30%;
+    background: radial-gradient(circle, rgba(217, 148, 43, 0.18), transparent 62%);
+    filter: blur(4px);
+  }
+
+  .home-orbit-mark {
+    animation: coherenceOrbitFloat 12s ease-in-out infinite;
+    filter: drop-shadow(0 20px 34px rgba(8, 24, 32, 0.16));
+  }
+
   .home-coherence-map::before {
     content: '';
     position: absolute;
     inset: -35%;
     pointer-events: none;
     background:
-      radial-gradient(circle at 35% 20%, rgba(56, 189, 248, 0.16), transparent 28%),
-      radial-gradient(circle at 76% 58%, rgba(16, 185, 129, 0.12), transparent 30%),
-      linear-gradient(115deg, transparent 18%, rgba(125, 211, 252, 0.08), transparent 58%);
+      radial-gradient(circle at 35% 20%, rgba(111, 169, 165, 0.18), transparent 28%),
+      radial-gradient(circle at 76% 58%, rgba(217, 148, 43, 0.14), transparent 30%),
+      linear-gradient(115deg, transparent 18%, rgba(47, 119, 120, 0.1), transparent 58%);
     opacity: 0.55;
     transform: translate3d(-2%, -1%, 0) rotate(0deg);
     animation: coherenceAmbientGlow 16s ease-in-out infinite;
@@ -565,15 +589,15 @@ const formatDate = (value?: string) => {
     0%,
     100% {
       opacity: 0.72;
-      box-shadow: 0 0 12px rgba(16, 185, 129, 0.45);
+      box-shadow: 0 0 12px rgba(217, 148, 43, 0.45);
       transform: scale(1);
     }
 
     50% {
       opacity: 1;
       box-shadow:
-        0 0 0 5px rgba(16, 185, 129, 0.1),
-        0 0 22px rgba(16, 185, 129, 0.72);
+        0 0 0 5px rgba(217, 148, 43, 0.12),
+        0 0 22px rgba(217, 148, 43, 0.72);
       transform: scale(1.08);
     }
   }
@@ -588,7 +612,7 @@ const formatDate = (value?: string) => {
     }
 
     12% {
-      border-color: rgba(56, 189, 248, 0.45);
+      border-color: rgba(47, 119, 120, 0.45);
       opacity: 1;
       transform: translateY(-1px);
     }
@@ -598,13 +622,24 @@ const formatDate = (value?: string) => {
     0%,
     28%,
     100% {
-      box-shadow: 0 0 0 rgba(56, 189, 248, 0);
+      box-shadow: 0 0 0 rgba(217, 148, 43, 0);
       background-color: transparent;
     }
 
     12% {
-      box-shadow: 0 0 18px rgba(56, 189, 248, 0.28);
-      background-color: rgba(255, 255, 255, 0.62);
+      box-shadow: 0 0 18px rgba(217, 148, 43, 0.24);
+      background-color: rgba(248, 247, 243, 0.68);
+    }
+  }
+
+  @keyframes coherenceOrbitFloat {
+    0%,
+    100% {
+      transform: rotate(-2deg) scale(1);
+    }
+
+    50% {
+      transform: rotate(2deg) scale(1.025);
     }
   }
 
@@ -638,6 +673,7 @@ const formatDate = (value?: string) => {
     .home-hero-reveal,
     .home-framework-card,
     .home-coherence-map::before,
+    .home-orbit-mark,
     .home-active-dot,
     .home-map-node,
     .home-map-node-badge,
@@ -651,7 +687,8 @@ const formatDate = (value?: string) => {
     .home-coherence-map,
     .home-coherence-map:hover,
     .home-map-node,
-    .home-map-field {
+    .home-map-field,
+    .home-orbit-mark {
       transform: none;
     }
   }

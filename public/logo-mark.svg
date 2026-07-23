@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">CoherenceMind orbit mark</title>
+  <desc id="desc">Two teal orbit arcs surrounding a warm gold center point.</desc>
+  <defs>
+    <linearGradient id="tealStroke" x1="96" y1="96" x2="416" y2="416" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0A3437"/>
+      <stop offset="0.55" stop-color="#2F7778"/>
+      <stop offset="1" stop-color="#6FA9A5"/>
+    </linearGradient>
+    <radialGradient id="goldCore" cx="50%" cy="45%" r="56%">
+      <stop offset="0" stop-color="#F0B453"/>
+      <stop offset="0.65" stop-color="#D9942B"/>
+      <stop offset="1" stop-color="#9C5C13"/>
+    </radialGradient>
+    <filter id="softGlow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0.85 0 1 0 0 0.5 0 0 1 0 0.16 0 0 0 0.48 0"/>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <path
+    d="M389 136C347 77 263 61 199 94c-58 30-88 93-71 153 7 25 21 48 41 65"
+    fill="none"
+    stroke="url(#tealStroke)"
+    stroke-width="34"
+    stroke-linecap="round"
+  />
+  <path
+    d="M123 376c42 59 126 75 190 42 58-30 88-93 71-153-7-25-21-48-41-65"
+    fill="none"
+    stroke="url(#tealStroke)"
+    stroke-width="34"
+    stroke-linecap="round"
+  />
+  <circle cx="256" cy="256" r="36" fill="url(#goldCore)" filter="url(#softGlow)"/>
+</svg>

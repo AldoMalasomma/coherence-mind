@@ -16,12 +16,12 @@ const {
 const navItems: NavigationLink[] = links.length ? links : fallback;
 const listClass =
   layout === 'inline'
-    ? 'flex flex-wrap gap-4 text-sm uppercase tracking-widest text-slate-600 dark:text-slate-300'
-    : 'flex flex-col gap-2 text-base font-medium text-slate-900 dark:text-slate-50';
+    ? 'flex flex-wrap gap-5 text-xs font-semibold uppercase tracking-[0.24em] text-ink/60 dark:text-paper/65'
+    : 'flex flex-col gap-2 text-base font-medium text-ink dark:text-paper';
 const linkClass =
   layout === 'inline'
-    ? 'transition hover:text-slate-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500 dark:hover:text-slate-50'
-    : 'block rounded-xl px-3 py-2 text-slate-900 transition hover:bg-slate-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500 dark:text-white dark:hover:bg-white/10';
+    ? 'transition hover:text-teal focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent dark:hover:text-accentMuted'
+    : 'block rounded-lg px-3 py-2 text-ink transition hover:bg-paper focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent dark:text-paper dark:hover:bg-white/10';
 ---
 <nav aria-label="Primary">
   <ul class={listClass}>

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 220" role="img" aria-labelledby="title desc">
+  <title id="title">CoherenceMind logo</title>
+  <desc id="desc">CoherenceMind wordmark with orbit symbol and research tagline.</desc>
+  <defs>
+    <linearGradient id="tealStroke" x1="40" y1="20" x2="180" y2="170" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0A3437"/>
+      <stop offset="0.55" stop-color="#2F7778"/>
+      <stop offset="1" stop-color="#6FA9A5"/>
+    </linearGradient>
+    <radialGradient id="goldCore" cx="50%" cy="45%" r="56%">
+      <stop offset="0" stop-color="#F0B453"/>
+      <stop offset="0.65" stop-color="#D9942B"/>
+      <stop offset="1" stop-color="#9C5C13"/>
+    </radialGradient>
+  </defs>
+  <g transform="translate(28 24) scale(.34)">
+    <path d="M389 136C347 77 263 61 199 94c-58 30-88 93-71 153 7 25 21 48 41 65" fill="none" stroke="url(#tealStroke)" stroke-width="34" stroke-linecap="round"/>
+    <path d="M123 376c42 59 126 75 190 42 58-30 88-93 71-153-7-25-21-48-41-65" fill="none" stroke="url(#tealStroke)" stroke-width="34" stroke-linecap="round"/>
+    <circle cx="256" cy="256" r="36" fill="url(#goldCore)"/>
+  </g>
+  <text x="210" y="105" fill="#081820" font-family="Cormorant Garamond, Libre Baskerville, Georgia, serif" font-size="76" font-weight="600">CoherenceMind</text>
+  <text x="214" y="154" fill="#D9942B" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="700" letter-spacing="7">INDEPENDENT RESEARCH ON</text>
+  <text x="214" y="186" fill="#D9942B" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="700" letter-spacing="7">CONSCIOUSNESS AND ARTIFICIAL INTELLIGENCE</text>
+</svg>

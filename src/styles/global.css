@@ -4,10 +4,19 @@
 
 :root {
   --cm-vh: 1vh;
+  --cm-ivory: #f8f7f3;
+  --cm-paper: #f0eee8;
+  --cm-ink: #081820;
+  --cm-deep-teal: #082020;
+  --cm-teal: #2f7778;
+  --cm-teal-soft: #6fa9a5;
+  --cm-gold: #d9942b;
+  --cm-gold-light: #f0b453;
+  --cm-muted: #6f777c;
 }
 
 body {
-  @apply bg-slate-50 text-slate-900 font-sans antialiased transition-colors duration-300 dark:bg-slate-950 dark:text-slate-100;
+  @apply overflow-x-hidden bg-paper text-ink font-sans antialiased transition-colors duration-300 dark:bg-ink dark:text-paper;
   min-height: calc(var(--cm-vh, 1vh) * 100);
 }
 
@@ -17,11 +26,11 @@ a {
 
 /* Accent link style shared across Zenodo/PDF CTAs */
 .link-accent {
-  @apply text-sky-700 underline underline-offset-4 hover:text-sky-600 dark:text-sky-300 dark:hover:text-sky-200;
+  @apply text-teal underline decoration-accent/50 underline-offset-4 hover:text-ink dark:text-tealSoft dark:hover:text-accentMuted;
 }
 
 .link-card {
-  @apply text-sky-700 hover:text-sky-600 dark:text-sky-300 dark:hover:text-sky-200;
+  @apply text-teal hover:text-ink dark:text-tealSoft dark:hover:text-accentMuted;
 }
 
 [data-theme-toggle] [data-theme-icon] {
@@ -35,7 +44,7 @@ a {
 }
 
 .btn-primary {
-  @apply inline-flex items-center justify-center rounded-full border border-transparent bg-accent px-5 py-3 text-sm font-semibold uppercase tracking-widest text-white shadow-depth focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent;
+  @apply inline-flex items-center justify-center rounded-full border border-transparent bg-accent px-5 py-3 text-sm font-semibold uppercase tracking-widest text-ink shadow-depth focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent;
 }
 
 .btn-secondary {
@@ -97,7 +106,9 @@ html.theme-accessible .dark\:bg-white\/5 {
 }
 
 html.theme-accessible .bg-sky-600,
-html.theme-accessible .dark\:bg-sky-500 {
+html.theme-accessible .dark\:bg-sky-500,
+html.theme-accessible .bg-accent,
+html.theme-accessible .dark\:bg-accent {
   background-color: #0f172a !important;
   color: #ffffff !important;
   border-color: #0f172a !important;
