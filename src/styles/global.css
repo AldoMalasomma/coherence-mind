@@ -51,6 +51,58 @@ a {
   @apply inline-flex items-center justify-center rounded-full border border-white/40 px-5 py-3 text-sm font-semibold uppercase tracking-widest text-white hover:border-white;
 }
 
+.cm-page {
+  @apply bg-paper text-ink transition-colors duration-300 dark:bg-ink dark:text-paper;
+}
+
+.cm-section {
+  @apply border-ink/10 dark:border-white/10;
+}
+
+.cm-page-title {
+  @apply font-display text-4xl font-semibold leading-tight text-ink dark:text-paper md:text-5xl;
+}
+
+.cm-section-title {
+  @apply font-display text-2xl font-semibold leading-tight text-ink dark:text-paper md:text-3xl;
+}
+
+.cm-kicker {
+  @apply text-xs font-semibold uppercase tracking-[0.24em] text-teal dark:text-tealSoft;
+}
+
+.cm-copy {
+  @apply text-ink/65 dark:text-paper/70;
+}
+
+.cm-muted {
+  @apply text-ink/50 dark:text-paper/50;
+}
+
+.cm-panel {
+  @apply rounded-lg border border-ink/10 bg-paper/80 shadow-sm backdrop-blur-sm dark:border-white/10 dark:bg-white/[0.045];
+}
+
+.cm-card {
+  @apply rounded-lg border border-ink/10 bg-[#f8f7f3]/85 shadow-sm backdrop-blur-sm transition duration-300 hover:border-teal/35 hover:bg-white dark:border-white/10 dark:bg-white/[0.05] dark:hover:border-accent/35 dark:hover:bg-white/[0.075];
+}
+
+.cm-chip {
+  @apply inline-flex items-center rounded-full border border-ink/10 bg-paper/70 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-ink/60 shadow-sm dark:border-white/10 dark:bg-white/[0.055] dark:text-paper/65;
+}
+
+.cm-action-primary {
+  @apply inline-flex items-center justify-center rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-paper shadow-depth transition hover:-translate-y-0.5 hover:bg-teal focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent dark:bg-accent dark:text-ink dark:hover:bg-accentMuted;
+}
+
+.cm-action-secondary {
+  @apply inline-flex items-center justify-center rounded-full border border-ink/15 bg-paper/60 px-5 py-2.5 text-sm font-semibold text-ink shadow-sm transition hover:-translate-y-0.5 hover:border-teal hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent dark:border-white/15 dark:bg-white/5 dark:text-paper dark:hover:border-accentMuted dark:hover:bg-white/10;
+}
+
+.cm-link {
+  @apply font-semibold text-teal underline decoration-accent/45 underline-offset-4 hover:text-ink dark:text-tealSoft dark:hover:text-accentMuted;
+}
+
 html.theme-accessible {
   color-scheme: light;
 }
@@ -117,4 +169,160 @@ html.theme-accessible .dark\:bg-accent {
 html.theme-accessible .bg-sky-600:hover,
 html.theme-accessible .dark\:bg-sky-500:hover {
   background-color: #1f2937 !important;
+}
+
+/* Temporary compatibility layer for pages that still use the pre-brand slate/sky palette. */
+.bg-slate-50 {
+  background-color: var(--cm-paper) !important;
+}
+
+.bg-slate-100,
+.bg-slate-100\/70,
+.bg-slate-100\/80,
+.bg-white,
+.bg-white\/60,
+.bg-white\/70,
+.bg-white\/80,
+.bg-white\/90 {
+  background-color: rgb(248 247 243 / 0.82) !important;
+}
+
+.bg-slate-900,
+.bg-sky-600,
+.bg-sky-500,
+.bg-emerald-500 {
+  background-color: var(--cm-ink) !important;
+}
+
+.text-slate-900,
+.text-slate-800,
+.text-slate-700 {
+  color: var(--cm-ink) !important;
+}
+
+.text-slate-600,
+.text-slate-500,
+.text-slate-400 {
+  color: rgb(8 24 32 / 0.62) !important;
+}
+
+.text-sky-800,
+.text-sky-700,
+.text-violet-800,
+.text-emerald-800 {
+  color: var(--cm-teal) !important;
+}
+
+.border-slate-200,
+.border-slate-200\/80,
+.border-slate-300,
+.border-sky-300,
+.border-sky-700\/40,
+.border-sky-700\/70,
+.border-violet-700\/70,
+.border-emerald-700\/70 {
+  border-color: rgb(8 24 32 / 0.12) !important;
+}
+
+.decoration-sky-300,
+.decoration-sky-500 {
+  text-decoration-color: rgb(217 148 43 / 0.55) !important;
+}
+
+.focus\:border-sky-400:focus,
+.focus\:ring-sky-300\/40:focus,
+.focus\:ring-sky-300\/50:focus,
+.focus-visible\:outline-sky-700:focus-visible {
+  border-color: var(--cm-teal) !important;
+  --tw-ring-color: rgb(47 119 120 / 0.35) !important;
+  outline-color: var(--cm-gold) !important;
+}
+
+.from-sky-500\/20,
+.from-sky-500\/70 {
+  --tw-gradient-from: rgb(47 119 120 / 0.28) var(--tw-gradient-from-position) !important;
+  --tw-gradient-to: rgb(47 119 120 / 0) var(--tw-gradient-to-position) !important;
+}
+
+.from-indigo-500\/70,
+.from-emerald-500\/70 {
+  --tw-gradient-from: rgb(8 32 32 / 0.35) var(--tw-gradient-from-position) !important;
+  --tw-gradient-to: rgb(8 32 32 / 0) var(--tw-gradient-to-position) !important;
+}
+
+.via-purple-500\/10,
+.via-cyan-400\/50,
+.via-sky-400\/50,
+.via-teal-400\/50 {
+  --tw-gradient-to: rgb(111 169 165 / 0) var(--tw-gradient-to-position) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), rgb(111 169 165 / 0.22) var(--tw-gradient-via-position), var(--tw-gradient-to) !important;
+}
+
+.dark .dark\:bg-slate-950,
+.dark .dark\:bg-slate-900,
+.dark .dark\:bg-slate-900\/40,
+.dark .dark\:bg-slate-900\/50,
+.dark .dark\:bg-slate-900\/60,
+.dark .dark\:bg-slate-900\/70,
+.dark .dark\:bg-slate-950\/40,
+.dark .dark\:bg-slate-950\/60,
+.dark .bg-white,
+.dark .bg-white\/60,
+.dark .bg-white\/70,
+.dark .bg-white\/80,
+.dark .bg-white\/90,
+.dark .bg-slate-100,
+.dark .bg-slate-100\/70,
+.dark .bg-slate-100\/80 {
+  background-color: rgb(255 255 255 / 0.05) !important;
+}
+
+.dark .dark\:bg-sky-500,
+.dark .dark\:bg-sky-400,
+.dark .dark\:bg-emerald-400,
+.dark .dark\:bg-sky-300 {
+  background-color: var(--cm-gold) !important;
+}
+
+.dark .dark\:text-slate-100,
+.dark .dark\:text-white {
+  color: var(--cm-paper) !important;
+}
+
+.dark .dark\:text-slate-200,
+.dark .dark\:text-slate-300,
+.dark .dark\:text-white\/80,
+.dark .dark\:text-white\/75,
+.dark .dark\:text-white\/70,
+.dark .dark\:text-white\/65 {
+  color: rgb(248 247 243 / 0.72) !important;
+}
+
+.dark .dark\:text-slate-400,
+.dark .dark\:text-slate-500,
+.dark .dark\:text-slate-600,
+.dark .dark\:text-white\/60,
+.dark .dark\:text-white\/50,
+.dark .dark\:text-white\/45 {
+  color: rgb(248 247 243 / 0.52) !important;
+}
+
+.dark .dark\:text-sky-300,
+.dark .dark\:text-sky-200,
+.dark .dark\:text-violet-300,
+.dark .dark\:text-emerald-300 {
+  color: var(--cm-teal-soft) !important;
+}
+
+.dark .dark\:border-slate-800,
+.dark .dark\:border-slate-900,
+.dark .dark\:border-sky-300\/40 {
+  border-color: rgb(255 255 255 / 0.10) !important;
+}
+
+.dark .dark\:focus\:border-sky-400\/70:focus,
+.dark .dark\:focus\:ring-sky-400\/20:focus,
+.dark .dark\:focus\:ring-sky-400\/30:focus {
+  border-color: var(--cm-gold) !important;
+  --tw-ring-color: rgb(217 148 43 / 0.28) !important;
 }
